@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>海南岛亲子自驾完整攻略 v4.0</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); min-height: 100vh; line-height: 1.6; }
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 25px 20px; text-align: center; color: white; position: sticky; top: 0; z-index: 100; box-shadow: 0 5px 30px rgba(0,0,0,0.3); }
+        .header h1 { font-size: 1.6rem; margin-bottom: 8px; }
+        .header-info { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; font-size: 0.85rem; }
+        .header-info span { background: rgba(255,255,255,0.2); padding: 4px 10px; border-radius: 12px; }
+        .container { max-width: 1300px; margin: 0 auto; padding: 15px; }
+        .card { background: white; border-radius: 16px; margin-bottom: 20px; overflow: hidden; box-shadow: 0 8px 30px rgba(0,0,0,0.15); }
+        .section-title { font-size: 1.15rem; color: #333; padding: 15px 20px; border-bottom: 2px solid #eee; display: flex; align-items: center; gap: 8px; }
+        .route-flow { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 8px; padding: 20px; background: linear-gradient(135deg, #f8f9fa, #e9ecef); }
+        .route-node { text-align: center; }
+        .route-city { background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 12px 16px; border-radius: 20px; font-weight: bold; font-size: 0.9rem; box-shadow: 0 4px 15px rgba(102,126,234,0.4); }
+        .route-nights { font-size: 0.75rem; color: #666; margin-top: 5px; }
+        .route-arrow { color: #667eea; font-size: 1.3rem; display: flex; flex-direction: column; align-items: center; }
+        .route-km { font-size: 0.7rem; color: #888; }
+        .quick-stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 10px; padding: 15px 20px; background: #fafafa; }
+        .stat-item { text-align: center; padding: 10px; }
+        .stat-icon { font-size: 1.4rem; }
+        .stat-val { font-size: 1rem; font-weight: bold; color: #667eea; }
+        .stat-label { font-size: 0.7rem; color: #666; }
+        .day-header { padding: 18px 20px; color: white; }
+        .day-1 .day-header { background: linear-gradient(135deg, #f093fb, #f5576c); }
+        .day-2 .day-header { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+        .day-3 .day-header { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+        .day-4 .day-header { background: linear-gradient(135deg, #fa709a, #fee140); }
+        .day-5 .day-header { background: linear-gradient(135deg, #a18cd1, #fbc2eb); }
+        .day-6 .day-header { background: linear-gradient(135deg, #667eea, #764ba2); }
+        .day-header-top { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .day-title { display: flex; align-items: center; gap: 12px; }
+        .day-num { font-size: 2rem; font-weight: bold; opacity: 0.9; }
+        .day-info h3 { font-size: 1.15rem; margin-bottom: 2px; }
+        .day-info p { font-size: 0.85rem; opacity: 0.9; }
+        .day-badges { display: flex; gap: 8px; flex-wrap: wrap; }
+        .badge { background: rgba(255,255,255,0.25); padding: 5px 12px; border-radius: 15px; font-size: 0.8rem; }
+        .day-body { display: grid; grid-template-columns: 1fr 380px; }
+        @media (max-width: 900px) { .day-body { grid-template-columns: 1fr; } }
+        .main-content { padding: 20px; }
+        .timeline { position: relative; padding-left: 30px; }
+        .timeline::before { content: ''; position: absolute; left: 9px; top: 8px; bottom: 8px; width: 3px; background: linear-gradient(to bottom, #667eea, #764ba2); border-radius: 3px; }
+        .tl-item { position: relative; margin-bottom: 25px; }
+        .tl-item:last-child { margin-bottom: 0; }
+        .tl-dot { position: absolute; left: -27px; top: 5px; width: 15px; height: 15px; border-radius: 50%; border: 3px solid #667eea; background: white; }
+        .tl-dot.major { background: #667eea; width: 18px; height: 18px; left: -28px; top: 4px; }
+        .tl-dot.food { border-color: #e91e63; }
+        .tl-dot.food.major { background: #e91e63; }
+        .tl-dot.drive { border-color: #ff9800; }
+        .tl-time { font-size: 0.8rem; color: #888; font-weight: 600; margin-bottom: 4px; }
+        .tl-title { font-size: 1.05rem; font-weight: bold; color: #333; margin-bottom: 6px; display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+        .tl-desc { color: #555; font-size: 0.9rem; line-height: 1.7; }
+        .tag { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 0.7rem; font-weight: bold; }
+        .tag-must { background: #c8e6c9; color: #2e7d32; }
+        .tag-food { background: #f8bbd9; color: #c2185b; }
+        .tag-scenic { background: #bbdefb; color: #1565c0; }
+        .tag-drive { background: #ffe0b2; color: #e65100; }
+        .tag-secret { background: #e1bee7; color: #7b1fa2; }
+        .spot-detail { background: linear-gradient(135deg, #e3f2fd, #bbdefb); border-radius: 12px; padding: 15px; margin-top: 12px; border-left: 4px solid #1976d2; }
+        .spot-detail-title { font-weight: bold; color: #1565c0; font-size: 0.95rem; margin-bottom: 10px; }
+        .spot-detail-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 10px; }
+        @media (max-width: 600px) { .spot-detail-grid { grid-template-columns: 1fr; } }
+        .spot-detail-item { font-size: 0.85rem; color: #444; }
+        .spot-detail-item strong { color: #1565c0; }
+        .spot-intro { font-size: 0.85rem; color: #333; background: white; padding: 12px; border-radius: 8px; margin-bottom: 10px; line-height: 1.7; }
+        .spot-play { font-size: 0.85rem; color: #2e7d32; background: #e8f5e9; padding: 10px 12px; border-radius: 8px; }
+        .spot-play-title { font-weight: bold; margin-bottom: 5px; }
+        .spot-tips { font-size: 0.8rem; color: #f57c00; background: #fff3e0; padding: 8px 12px; border-radius: 8px; margin-top: 8px; }
+        .sidebar { background: #f8f9fa; padding: 20px; border-left: 1px solid #eee; }
+        @media (max-width: 900px) { .sidebar { border-left: none; border-top: 1px solid #eee; } }
+        .sb-section { margin-bottom: 20px; }
+        .sb-section:last-child { margin-bottom: 0; }
+        .sb-title { font-size: 0.95rem; font-weight: bold; color: #333; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 2px dashed #ddd; }
+        .food-card { background: white; border-radius: 12px; padding: 14px; margin-bottom: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border-left: 4px solid #e91e63; }
+        .food-name { font-weight: bold; color: #c2185b; font-size: 1rem; margin-bottom: 6px; }
+        .food-shop { font-size: 0.85rem; color: #555; margin-bottom: 4px; }
+        .food-desc { font-size: 0.85rem; color: #666; line-height: 1.6; margin-bottom: 6px; }
+        .food-price { font-size: 0.8rem; color: #888; }
+        .food-tip { font-size: 0.8rem; color: #f57c00; background: #fff8e1; padding: 6px 10px; border-radius: 6px; margin-top: 8px; }
+        .stay-card { background: linear-gradient(135deg, #e8f5e9, #c8e6c9); border-radius: 12px; padding: 14px; }
+        .stay-title { font-weight: bold; color: #2e7d32; font-size: 0.95rem; margin-bottom: 8px; }
+        .stay-options { font-size: 0.85rem; color: #444; margin-bottom: 4px; }
+        .stay-price { font-size: 0.8rem; color: #666; }
+        .stay-tip { font-size: 0.8rem; color: #1565c0; margin-top: 6px; }
+        .drive-card { background: linear-gradient(135deg, #fff3e0, #ffe0b2); border-radius: 12px; padding: 14px; margin-bottom: 12px; }
+        .drive-title { font-weight: bold; color: #e65100; font-size: 0.95rem; margin-bottom: 8px; }
+        .drive-content { font-size: 0.85rem; color: #555; line-height: 1.6; }
+        .drive-compare { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px; }
+        .drive-option { background: white; padding: 10px; border-radius: 8px; text-align: center; }
+        .drive-option-name { font-weight: bold; font-size: 0.85rem; margin-bottom: 4px; }
+        .drive-option-info { font-size: 0.75rem; color: #666; }
+        .warn-card { background: linear-gradient(135deg, #ffebee, #ffcdd2); border-radius: 12px; padding: 14px; }
+        .warn-title { font-weight: bold; color: #c62828; font-size: 0.9rem; margin-bottom: 10px; }
+        .warn-list { font-size: 0.85rem; color: #555; padding-left: 18px; margin: 0; }
+        .warn-list li { margin-bottom: 6px; line-height: 1.5; }
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(120px, 1fr)); gap: 12px; padding: 20px; }
+        .stat-box { text-align: center; padding: 15px 10px; background: #f8f9fa; border-radius: 12px; }
+        .stat-box.highlight { background: linear-gradient(135deg, #667eea, #764ba2); color: white; }
+        .stat-box .stat-icon { font-size: 1.5rem; margin-bottom: 5px; }
+        .stat-box .stat-val { font-size: 1.1rem; font-weight: bold; color: #667eea; }
+        .stat-box.highlight .stat-val { color: white; }
+        .stat-box .stat-label { font-size: 0.75rem; color: #666; }
+        .stat-box.highlight .stat-label { color: rgba(255,255,255,0.9); }
+        .food-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; padding: 20px; }
+        .food-overview-item { background: linear-gradient(135deg, #fce4ec, #f8bbd9); padding: 15px; border-radius: 12px; }
+        .food-overview-name { font-weight: bold; color: #c2185b; font-size: 1rem; margin-bottom: 6px; }
+        .food-overview-where { font-size: 0.85rem; color: #666; margin-bottom: 4px; }
+        .food-overview-desc { font-size: 0.85rem; color: #444; line-height: 1.5; }
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px; padding: 20px; }
+        .info-box { background: #f8f9fa; border-radius: 12px; padding: 15px; }
+        .info-box-title { font-weight: bold; color: #333; margin-bottom: 10px; font-size: 0.95rem; }
+        .info-box ul { font-size: 0.85rem; color: #555; padding-left: 20px; margin: 0; }
+        .info-box li { margin-bottom: 6px; line-height: 1.5; }
+        .footer { text-align: center; padding: 30px 20px; color: rgba(255,255,255,0.8); font-size: 0.9rem; line-height: 1.8; }
+        .why-go { background: #e8f5e9; padding: 12px; border-radius: 8px; margin: 10px 0; }
+        .why-go-title { font-weight: bold; color: #2e7d32; margin-bottom: 8px; }
+        .why-go ul { padding-left: 20px; margin: 0; font-size: 0.85rem; color: #444; }
+        .why-go li { margin-bottom: 4px; }
+        .kid-tips { background: #fff3e0; padding: 12px; border-radius: 8px; margin-top: 10px; border-left: 4px solid #ff9800; }
+        .kid-tips-title { font-weight: bold; color: #e65100; margin-bottom: 8px; font-size: 0.9rem; }
+        .kid-tips ul { padding-left: 20px; margin: 0; font-size: 0.85rem; color: #555; }
+        .kid-tips li { margin-bottom: 4px; }
+        .budget-table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        .budget-table th, .budget-table td { padding: 12px 15px; text-align: left; border-bottom: 1px solid #eee; }
+        .budget-table th { background: #f8f9fa; color: #333; font-weight: bold; }
+        .budget-table tr:hover { background: #fafafa; }
+        .budget-total { background: linear-gradient(135deg, #667eea, #764ba2); color: white; }
+        .budget-total td { font-weight: bold; }
+    </style>
+</head>
+<body>
+<div class="header">
+    <h1>🚗 海南岛亲子自驾完整攻略</h1>
+    <div class="header-info">
+        <span>📅 6天5晚</span><span>🚗 450公里</span><span>👨‍👩‍👧 2大1小(6岁)</span><span>💰 9K-15K</span><span>🌡️ 最佳：2-3月</span>
+    </div>
+</div>
+
+<div class="container">
+<!-- 路线总览 -->
+<div class="card">
+    <div class="section-title">🗺️ 路线总览</div>
+    <div class="route-flow">
+        <div class="route-node"><div class="route-city">✈️ 海口</div><div class="route-nights">住1晚</div></div>
+        <div class="route-arrow">→<span class="route-km">80km</span></div>
+        <div class="route-node"><div class="route-city">🌴 文昌</div><div class="route-nights">住2晚</div></div>
+        <div class="route-arrow">→<span class="route-km">120km</span></div>
+        <div class="route-node"><div class="route-city">🌿 石梅湾</div><div class="route-nights">住1晚</div></div>
+        <div class="route-arrow">→<span class="route-km">50km</span></div>
+        <div class="route-node"><div class="route-city">🏖️ 清水湾</div><div class="route-nights">住1晚</div></div>
+        <div class="route-arrow">→<span class="route-km">200km</span></div>
+        <div class="route-node"><div class="route-city">✈️ 海口</div><div class="route-nights">返程</div></div>
+    </div>
+    <div class="quick-stats">
+        <div class="stat-item"><div class="stat-icon">🚗</div><div class="stat-val">SUV</div><div class="stat-label">租车建议</div></div>
+        <div class="stat-item"><div class="stat-icon">⛽</div><div class="stat-val">300-400</div><div class="stat-label">油费(元)</div></div>
+        <div class="stat-item"><div class="stat-icon">🎫</div><div class="stat-val">~910</div><div class="stat-label">门票(元)</div></div>
+        <div class="stat-item"><div class="stat-icon">🌅</div><div class="stat-val">06:45</div><div class="stat-label">日出</div></div>
+        <div class="stat-item"><div class="stat-icon">🌇</div><div class="stat-val">18:45</div><div class="stat-label">日落</div></div>
+    </div>
+</div>
+
+<!-- ==================== DAY 1 ==================== -->
+<div class="card day-1">
+    <div class="day-header">
+        <div class="day-header-top">
+            <div class="day-title">
+                <span class="day-num">D1</span>
+                <div class="day-info">
+                    <h3>海口·老街与海的初遇</h3>
+                    <p>骑楼老街 → 假日海滩 | 市区漫游日</p>
+                </div>
+            </div>
+            <div class="day-badges">
+                <span class="badge">🚗 市区0km</span>
+                <span class="badge">⏱️ 轻松休闲</span>
+            </div>
+        </div>
+    </div>
+    <div class="day-body">
+        <div class="main-content">
+            <div class="timeline">
+                <div class="tl-item">
+                    <div class="tl-dot drive"></div>
+                    <div class="tl-time">10:00-11:00</div>
+                    <div class="tl-title">✈️ 抵达海口美兰机场 <span class="tag tag-drive">取车</span></div>
+                    <div class="tl-desc">机场取车，建议选择SUV车型，空间大、底盘高，适合海南路况。提前在租车App预约，到店取车更省时。</div>
+                </div>
+                
+                <div class="tl-item">
+                    <div class="tl-dot food major"></div>
+                    <div class="tl-time">11:30-13:00</div>
+                    <div class="tl-title">🏛️ 骑楼老街 <span class="tag tag-must">必去</span><span class="tag tag-food">美食</span></div>
+                    <div class="tl-desc">海口最具南洋风情的历史街区，百年骑楼建筑群中藏着无数老字号美食。适合边逛边吃，感受老海口的烟火气。</div>
+                    
+                    <div class="spot-detail">
+                        <div class="spot-detail-title">📍 景点深度介绍</div>
+                        <div class="spot-detail-grid">
+                            <div class="spot-detail-item"><strong>门票：</strong>免费开放</div>
+                            <div class="spot-detail-item"><strong>建议时长：</strong>2-3小时</div>
+                            <div class="spot-detail-item"><strong>最佳时间：</strong>上午10点-下午4点</div>
+                            <div class="spot-detail-item"><strong>地址：</strong>海口市龙华区骑楼老街</div>
+                        </div>
+                        <div class="spot-intro">
+                            <p><strong>这是什么地方？</strong></p>
+                            <p>骑楼老街是海口市最具特色的街道景观，主要分布在得胜沙路、中山路、博爱路、新华路、解放路等老街区。这些骑楼大多是上世纪初由归国华侨借鉴南洋建筑风格所建，将欧亚建筑风格与海南本土文化完美融合。</p>
+                            <p style="margin-top:8px;">整个街区保存了约600多栋骑楼建筑，是中国历史文化名街之一，也是海口城市文化的"活化石"。漫步其中，仿佛穿越回民国时期的繁华商埠。</p>
+                        </div>
+                        <div class="why-go">
+                            <div class="why-go-title">🌟 为什么值得去？</div>
+                            <ul>
+                                <li><strong>建筑博物馆</strong>：独特的南洋骑楼风格，拍照超出片</li>
+                                <li><strong>美食天堂</strong>：老爸茶、清补凉、海南粉等本地小吃聚集地</li>
+                                <li><strong>历史人文</strong>：感受百年海口的商业文化和华侨故事</li>
+                                <li><strong>亲子友好</strong>：平坦好走，有遮阳廊道，带娃逛街无压力</li>
+                            </ul>
+                        </div>
+                        <div class="spot-play">
+                            <div class="spot-play-title">🎯 经典玩法 / 带娃技巧</div>
+                            <ul style="padding-left:20px; margin:0;">
+                                <li>从水巷口进入，沿中山路→博爱路→得胜沙路，体验最经典的骑楼风情</li>
+                                <li>上午去人少凉快，可以慢慢拍照，中午刚好找家老字号吃饭</li>
+                                <li>带孩子玩"寻宝游戏"：数数不同风格的骑楼装饰，找找最有趣的浮雕</li>
+                                <li>在老爸茶店坐下来，给孩子点份点心，体验地道海南慢生活</li>
+                            </ul>
+                        </div>
+                        <div class="kid-tips">
+                            <div class="kid-tips-title">👶 带娃注意事项</div>
+                            <ul>
+                                <li>老街车辆较多，牵好孩子的手，注意安全</li>
+                                <li>部分老店只收现金，备些零钱</li>
+                                <li>天热记得补水，街边椰子水是最佳选择</li>
+                                <li>推车不太方便，建议背带或让孩子自己走</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tl-item">
+                    <div class="tl-dot food"></div>
+                    <div class="tl-time">13:00-14:00</div>
+                    <div class="tl-title">🍜 午餐：吴日彪蒜香排骨 <span class="tag tag-food">老字号</span></div>
+                    <div class="tl-desc">骑楼老街网红店，蒜香排骨是招牌，肉质酥烂、蒜香浓郁。还有海南粉、猪脚饭等本地特色。人均40-60元。</div>
+                </div>
+
+                <div class="tl-item">
+                    <div class="tl-dot"></div>
+                    <div class="tl-time">14:30-15:00</div>
+                    <div class="tl-title">🚗 前往假日海滩 <span class="tag tag-drive">车程20分钟</span></div>
+                    <div class="tl-desc">从骑楼老街出发，沿滨海大道西行约10公里即到。滨海大道风景优美，本身就是一段享受。</div>
+                </div>
+
+                <div class="tl-item">
+                    <div class="tl-dot major"></div>
+                    <div class="tl-time">15:00-18:00</div>
+                    <div class="tl-title">🏖️ 假日海滩 <span class="tag tag-must">必去</span><span class="tag tag-scenic">亲子</span></div>
+                    <div class="tl-desc">海口最知名的公共海滩，绵延6公里的优质沙滩。设施完善，有更衣室、淋浴间，非常适合亲子戏水。傍晚还能看日落。</div>
+                    
+                    <div class="spot-detail">
+                        <div class="spot-detail-title">📍 景点深度介绍</div>
+                        <div class="spot-detail-grid">
+                            <div class="spot-detail-item"><strong>门票：</strong>免费（停车费10元）</div>
+                            <div class="spot-detail-item"><strong>建议时长：</strong>2-4小时</div>
+                            <div class="spot-detail-item"><strong>最佳时间：</strong>下午4点后（避暑+日落）</div>
+                            <div class="spot-detail-item"><strong>设施：</strong>更衣室、淋浴、租赁服务</div>
+                        </div>
+                        <div class="spot-intro">
+                            <p><strong>这是什么地方？</strong></p>
+                            <p>假日海滩位于海口市西海岸，是海南最具规模的城市海滩，全长约6公里，分为海浴区、海上运动区、餐饮区和休闲度假区四大功能区。</p>
+                            <p style="margin-top:8px;">这里沙滩细腻、海水清澈，配套设施齐全，有专业救生员值守，是海口市民周末休闲的首选地，也是亲子家庭玩海戏水的理想场所。</p>
+                        </div>
+                        <div class="why-go">
+                            <div class="why-go-title">🌟 为什么值得去？</div>
+                            <ul>
+                                <li><strong>设施完善</strong>：有更衣室、淋浴、寄存，带娃方便</li>
+                                <li><strong>安全系数高</strong>：有专业救生员，海域平缓</li>
+                                <li><strong>免费开放</strong>：省下门票钱给孩子买椰子水</li>
+                                <li><strong>日落绝美</strong>：西海岸观日落最佳位置之一</li>
+                                <li><strong>活动丰富</strong>：可以玩沙、踏浪、放风筝、骑沙滩车</li>
+                            </ul>
+                        </div>
+                        <div class="spot-play">
+                            <div class="spot-play-title">🎯 经典玩法 / 带娃技巧</div>
+                            <ul style="padding-left:20px; margin:0;">
+                                <li>自带玩沙工具（铲子、桶、模具），海边有卖但价格贵</li>
+                                <li>下午4点后去，避开正午暴晒，玩到日落刚刚好</li>
+                                <li>租个沙滩椅（30-50元），大人休息看海，孩子玩沙两不误</li>
+                                <li>带一套换洗衣服，孩子100%会湿身</li>
+                                <li>傍晚去温泉海滩区域，可以免费泡温泉</li>
+                            </ul>
+                        </div>
+                        <div class="kid-tips">
+                            <div class="kid-tips-title">👶 带娃注意事项</div>
+                            <ul>
+                                <li>必涂防晒霜，海边紫外线强，建议SPF50+</li>
+                                <li>自带清水冲洗脚上的沙子，比公共淋浴方便</li>
+                                <li>不要让孩子走太远，注意潮汐变化</li>
+                                <li>准备防晒帐篷或遮阳伞，玩累了可以休息</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tl-item">
+                    <div class="tl-dot food"></div>
+                    <div class="tl-time">18:30-20:00</div>
+                    <div class="tl-title">🦞 晚餐：丁村万人海鲜广场 <span class="tag tag-food">海鲜</span></div>
+                    <div class="tl-desc">海口最大的海鲜广场，自己挑海鲜，档口加工。价格透明，加工费便宜。第一顿海鲜大餐，开启海南美食之旅！</div>
+                </div>
+
+                <div class="tl-item">
+                    <div class="tl-dot"></div>
+                    <div class="tl-time">20:30</div>
+                    <div class="tl-title">🏨 入住酒店休息</div>
+                    <div class="tl-desc">早点休息，养精蓄锐，明天开始正式的环岛之旅！</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="sidebar">
+            <div class="sb-section">
+                <div class="sb-title">🍜 今日美食推荐</div>
+                <div class="food-card">
+                    <div class="food-name">辣汤饭 / 腌面</div>
+                    <div class="food-shop">📍 骑楼老街水巷口</div>
+                    <div class="food-desc">海口人的早餐标配，猪杂辣汤配白饭，暖胃又满足。腌面是拌面的海南叫法，加花生酱和芝麻特别香。</div>
+                    <div class="food-price">💰 人均 15-25元</div>
+                </div>
+                <div class="food-card">
+                    <div class="food-name">老爸茶</div>
+                    <div class="food-shop">📍 骑楼老街各茶店</div>
+                    <div class="food-desc">海南特色下午茶，点一壶茶配各种点心（蛋挞、菠萝包、叉烧酥），可以坐一下午。孩子会喜欢各种糕点！</div>
+                    <div class="food-price">💰 人均 30-50元</div>
+                </div>
+                <div class="food-card">
+                    <div class="food-name">清补凉</div>
+                    <div class="food-shop">📍 街边随处可见</div>
+                    <div class="food-desc">海南消暑神器！椰奶/椰水打底，加红豆、绿豆、薏米、芋圆等十几种配料，冰凉爽口，孩子超爱！</div>
+                    <div class="food-price">💰 10-20元/份</div>
+                </div>
+            </div>
+            
+            <div class="sb-section">
+                <div class="sb-title">🏨 住宿推荐</div>
+                <div class="stay-card">
+                    <div class="stay-title">📍 海口市区 / 西海岸</div>
+                    <div class="stay-options">• 经济型：如家/汉庭（200-300元）</div>
+                    <div class="stay-options">• 舒适型：海口湾皇冠假日（400-600元）</div>
+                    <div class="stay-options">• 亲子型：香格里拉/希尔顿（600-1000元）</div>
+                    <div class="stay-tip">💡 住西海岸离假日海滩近，住市区离骑楼老街近，看行程选择</div>
+                </div>
+            </div>
+            
+            <div class="sb-section">
+                <div class="sb-title">⚠️ 避坑指南</div>
+                <div class="warn-card">
+                    <div class="warn-title">🚫 今日避坑要点</div>
+                    <ul class="warn-list">
+                        <li><strong>租车避坑</strong>：选大平台（神州、一嗨），仔细检查车况并拍照，买全险</li>
+                        <li><strong>海鲜避坑</strong>：先问价再捞，注意袋子里的水，加工费提前谈好</li>
+                        <li><strong>假日海滩</strong>：游泳圈自带，海边租很贵；不买摊贩兜售的椰子（宰客）</li>
+                        <li><strong>时间安排</strong>：避免正午12-14点在海滩暴晒</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== DAY 2 ==================== -->
+<div class="card day-2">
+    <div class="day-header">
+        <div class="day-header-top">
+            <div class="day-title">
+                <span class="day-num">D2</span>
+                <div class="day-info">
+                    <h3>文昌·椰林与红树林</h3>
+                    <p>东寨港红树林 → 铺前老街 → 东郊椰林 → 月亮湾</p>
+                </div>
+            </div>
+            <div class="day-badges">
+                <span class="badge">🚗 约100km</span>
+                <span class="badge">⏱️ 自然生态日</span>
+            </div>
+        </div>
+    </div>
+    <div class="day-body">
+        <div class="main-content">
+            <div class="timeline">
+                <div class="tl-item">
+                    <div class="tl-dot"></div>
+                    <div class="tl-time">08:00-08:30</div>
+                    <div class="tl-title">🥣 酒店早餐 + 出发</div>
+                    <div class="tl-desc">早起吃好早餐，今天行程丰富，需要充足体力。准备好防晒和驱蚊用品。</div>
+                </div>
+
+                <div class="tl-item">
+                    <div class="tl-dot drive"></div>
+                    <div class="tl-time">08:30-09:30</div>
+                    <div class="tl-title">🚗 海口 → 东寨港红树林 <span class="tag tag-drive">车程1小时</span></div>
+                    <div class="tl-desc">走海文高速，约40公里。东寨港是中国连片面积最大的红树林自然保护区。</div>
+                </div>
+
+                <div class="tl-item">
+                    <div class="tl-dot major"></div>
+                    <div class="tl-time">09:30-11:30</div>
+                    <div class="tl-title">🌿 东寨港红树林 <span class="tag tag-must">必去</span><span class="tag tag-scenic">生态</span></div>
+                    <div class="tl-desc">漫步栈道，观察神奇的"海上森林"和滩涂生物。这里是孩子认识自然的绝佳课堂，可以看到弹涂鱼、招潮蟹等有趣的小动物。</div>
+                    
+                    <div class="spot-detail">
+                        <div class="spot-detail-title">📍 景点深度介绍</div>
+                        <div class="spot-detail-grid">
+                            <div class="spot-detail-item"><strong>门票：</strong>免费（游船另付）</div>
+                            <div class="spot-detail-item"><strong>建议时长：</strong>1.5-2小时</div>
+                            <div class="spot-detail-item"><strong>最佳时间：</strong>退潮时（看潮汐表）</div>
+                            <div class="spot-detail-item"><strong>游船：</strong>80-120元/船（可议价）</div>
+                        </div>
+                        <div class="spot-intro">
+                            <p><strong>这是什么地方？</strong></p>
+                            <p>东寨港红树林国家级自然保护区是中国建立的第一个红树林保护区，也是迄今为止中国红树林自然保护区中连片面积最大、树种最多、林分保育最好、生物多样性最丰富的自然保护区。</p>
+                            <p style="margin-top:8px;">保护区面积约3337公顷，有红树林植物19科36种，占全国红树林植物种类的97%。这里还是170多种鸟类的栖息地，被誉为"海上森林公园"和"鸟类天堂"。</p>
+                            <p style="margin-top:8px;">红树林是一种神奇的植物群落，生长在海水与淡水交汇的滩涂上，具有防风消浪、促淤保滩、固岸护堤、净化海水的重要生态功能。</p>
+                        </div>
+                        <div class="why-go">
+                            <div class="why-go-title">🌟 为什么值得去？</div>
+                            <ul>
+                                <li><strong>自然科普</strong>：孩子可以近距离认识红树林生态系统</li>
+                                <li><strong>小动物乐园</strong>：弹涂鱼、招潮蟹、各种鸟类，比动物园有趣</li>
+                                <li><strong>摄影圣地</strong>：日出日落时分，红树林剪影绝美</li>
+                                <li><strong>空气清新</strong>：天然氧吧，负离子含量超高</li>
+                                <li><strong>独特体验</strong>：可以坐船深入红树林腹地探秘</li>
+                            </ul>
+                        </div>
+                        <div class="spot-play">
+                            <div class="spot-play-title">🎯 经典玩法 / 带娃技巧</div>
+                            <ul style="padding-left:20px; margin:0;">
+                                <li>先走木栈道观景（免费），再考虑是否坐船</li>
+                                <li>退潮时去最佳，滩涂上小动物最多</li>
+                                <li>带放大镜给孩子，观察招潮蟹和弹涂鱼</li>
+                                <li>准备一本湿地动植物图鉴，玩"寻宝认物"游戏</li>
+                                <li>望远镜可以观鸟，白鹭、苍鹭很常见</li>
+                            </ul>
+                        </div>
+                        <div class="kid-tips">
+                            <div class="kid-tips-title">👶 带娃注意事项</div>
+                            <ul>
+                                <li>蚊虫较多，提前喷好驱蚊水，穿长裤长袖</li>
+                                <li>栈道有些地方湿滑，牵好孩子的手</li>
+                                <li>不要让孩子下滩涂，淤泥很深会陷进去</li>
+                                <li>坐船要穿救生衣，看好孩子别乱动</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tl-item">
+                    <div class="tl-dot drive"></div>
+                    <div class="tl-time">11:30-12:00</div>
+                    <div class="tl-title">🚗 前往铺前老街 <span class="tag tag-drive">车程30分钟</span></div>
+                    <div class="tl-desc">走铺前大桥，这座跨海大桥本身就是一道风景线，可以中途停车拍照。</div>
+                </div>
+
+                <div class="tl-item">
+                    <div class="tl-dot food major"></div>
+                    <div class="tl-time">12:00-13:30</div>
+                    <div class="tl-title">🏚️ 铺前老街 + 午餐 <span class="tag tag-food">糟粕醋</span><span class="tag tag-secret">小众</span></div>
+                    <div class="tl-desc">比骑楼老街更原生态的南洋骑楼街区，游客很少。这里是糟粕醋的发源地，一定要尝尝这道特色美食！</div>
+                    
+                    <div class="spot-detail">
+                        <div class="spot-detail-title">📍 景点深度介绍</div>
+                        <div class="spot-detail-grid">
+                            <div class="spot-detail-item"><strong>门票：</strong>免费</div>
+                            <div class="spot-detail-item"><strong>建议时长：</strong>1-1.5小时</div>
+                            <div class="spot-detail-item"><strong>最佳时间：</strong>上午或傍晚</div>
+                            <div class="spot-detail-item"><strong>特色美食：</strong>糟粕醋</div>
+                        </div>
+                        <div class="spot-intro">
+                            <p><strong>这是什么地方？</strong></p>
+                            <p>铺前镇是文昌市最北部的古镇，曾是海南最繁华的渔港和商埠之一。这里的骑楼老街建于1895-1930年间，比海口骑楼更古老、更原汁原味，却鲜为人知。</p>
+                            <p style="margin-top:8px;">老街长约400米，两侧是典型的南洋骑楼建筑，雕花精美的罗马柱、斑驳的百叶窗、古老的商号招牌，时光仿佛在这里停滞。与海口骑楼的热闹喧嚣不同，铺前老街安静而沧桑，是真正的"活化石"。</p>
+                        </div>
+                        <div class="why-go">
+                            <div class="why-go-title">🌟 为什么值得去？</div>
+                            <ul>
+                                <li><strong>原汁原味</strong>：比海口骑楼更古朴，几乎没有商业化</li>
+                                <li><strong>糟粕醋发源地</strong>：正宗糟粕醋只有这里最地道</li>
+                                <li><strong>人少清静</strong>：游客稀少，拍照不用排队</li>
+                                <li><strong>顺路经过</strong>：去东郊椰林的必经之路</li>
+                            </ul>
+                        </div>
+                        <div class="spot-play">
+                            <div class="spot-play-title">🎯 经典玩法</div>
+                            <ul style="padding-left:20px; margin:0;">
+                                <li>慢慢逛老街，感受时光静止的氛围</li>
+                                <li>找一家老字号吃糟粕醋火锅，酸辣开胃超下饭</li>
+                                <li>和老建筑合影，vintage风格大片</li>
+                            </ul>
+                        </div>
+                        <div class="spot-tips">⚠️ 老街没有专门停车场，路边停车注意不要堵住居民通道</div>
+                    </div>
+                </div>
+
+                <div class="tl-item">
+                    <div class="tl-dot drive"></div>
+                    <div class="tl-time">13:30-14:30</div>
+                    <div class="tl-title">🚗 前往东郊椰林 <span class="tag tag-drive">车程1小时</span></div>
+                    <div class="tl-desc">沿着海岸线南下，一路椰风海韵。中途会经过文昌市区，可以短暂休息。</div>
+                </div>
+
+                <div class="tl-item">
+                    <div class="tl-dot major"></div>
+                    <div class="tl-time">14:30-16:30</div>
+                    <div class="tl-title">🌴 东郊椰林 <span class="tag tag-must">必去</span><span class="tag tag-scenic">网红</span></div>
+                    <div class="tl-desc">"文昌椰子半海南，东郊椰子半文昌"。这里是海南最大的椰子种植基地，高耸的椰子树遮天蔽日，是感受海南椰风的最佳去处。</div>
+                    
+                    <div class="spot-detail">
+                        <div class="spot-detail-title">📍 景点深度介绍</div>
+                        <div class="spot-detail-grid">
+                            <div class="spot-detail-item"><strong>门票：</strong>免费开放</div>
+                            <div class="spot-detail-item"><strong>建议时长：</strong>2-3小时</div>
+                            <div class="spot-detail-item"><strong>最佳时间：</strong>下午4点后（光线美）</div>
+                            <div class="spot-detail-item"><strong>椰子：</strong>现摘椰青10-15元/个</div>
+                        </div>
+                        <div class="spot-intro">
+                            <p><strong>这是什么地方？</strong></p>
+                            <p>东郊椰林位于文昌市东郊镇，是海南省最大的椰子种植区，种植面积约1.5万亩，有椰子树50多万株。这里的椰子品种繁多，有高种椰、矮种椰、水椰、红椰等十几个品种。</p>
+                            <p style="margin-top:8px;">椰林绵延十几公里，走在林荫小道上，两侧都是高耸入云的椰子树，阳光透过椰叶洒下斑驳光影，海风吹过沙沙作响，这才是真正的"椰梦长廊"。近年来成为网红打卡地，但依然保持着质朴的乡村风情。</p>
+                        </div>
+                        <div class="why-go">
+                            <div class="why-go-title">🌟 为什么值得去？</div>
+                            <ul>
+                                <li><strong>椰子王国</strong>：最正宗的海南椰风，椰子新鲜又便宜</li>
+                                <li><strong>拍照圣地</strong>：椰林小道、网红秋千，出片率极高</li>
+                                <li><strong>亲近自然</strong>：孩子可以认识椰子树，了解椰子的生长</li>
+                                <li><strong>消暑胜地</strong>：椰林遮阴，比海滩凉快很多</li>
+                                <li><strong>特色美食</strong>：椰子鸡、椰子饭、椰子糕，椰子宴席</li>
+                            </ul>
+                        </div>
+                        <div class="spot-play">
+                            <div class="spot-play-title">🎯 经典玩法 / 带娃技巧</div>
+                            <ul style="padding-left:20px; margin:0;">
+                                <li>租辆电瓶车（50-80元/小时）穿梭椰林，比步行有趣</li>
+                                <li>找个网红秋千拍照，孩子玩得开心大人出片</li>
+                                <li>买个现摘椰青，教孩子认识椰子的构造</li>
+                                <li>傍晚时分光线最美，适合拍剪影照</li>
+                                <li>可以参观椰雕工艺，买点椰子制品当手信</li>
+                            </ul>
+                        </div>
+                        <div class="kid-tips">
+                            <div class="kid-tips-title">👶 带娃注意事项</div>
+                            <ul>
+                                <li>椰子树下小心落果，不要在树下久留</li>
+                                <li>骑电瓶车注意安全，带孩子要慢行</li>
+                                <li>蚊虫较多，涂好驱蚊液</li>
+                                <li>椰子水凉性，孩子不要喝太多</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tl-item">
+                    <div class="tl-dot drive"></div>
+                    <div class="tl-time">16:30-17:00</div>
+                    <div class="tl-title">🚗 前往月亮湾 <span class="tag tag-drive">车程30分钟</span></div>
+                    <div class="tl-desc">东郊椰林往南，沿着海岸线即到月亮湾。一路风景绝美。</div>
+                </div>
+
+                <div class="tl-item">
+                    <div class="tl-dot major"></div>
+                    <div class="tl-time">17:00-18:30</div>
+                    <div class="tl-title">🌙 月亮湾 <span class="tag tag-scenic">日落</span><span class="tag tag-secret">小众</span></div>
+                    <div class="tl-desc">文昌最美的海湾，因形似弯月而得名。这里游客较少，沙滩洁白细腻，是看日落的绝佳地点。</div>
+                    
+                    <div class="spot-detail">
+                        <div class="spot-detail-title">📍 景点深度介绍</div>
+                        <div class="spot-detail-grid">
+                            <div class="spot-detail-item"><strong>门票：</strong>免费</div>
+                            <div class="spot-detail-item"><strong>建议时长：</strong>1-2小时</div>
+                            <div class="spot-detail-item"><strong>最佳时间：</strong>傍晚日落时分</div>
+                            <div class="spot-detail-item"><strong>设施：</strong>较少，建议自带饮用水</div>
+                        </div>
+                        <div class="spot-intro">
+                            <p><strong>这是什么地方？</strong></p>
+                            <p>月亮湾位于文昌市龙楼镇与东郊镇交界处，是一片呈月牙形的海湾，全长约11公里。这里远离城市喧嚣，保持着原始的自然风貌，沙滩洁白细腻，海水清澈碧蓝。</p>
+                            <p style="margin-top:8px;">与三亚的热门海湾相比，月亮湾游客稀少，商业开发程度低，是真正的"私藏海滩"。站在沙滩上，可以看到远处的铜鼓岭，日落时分更是美不胜收。</p>
+                        </div>
+                        <div class="why-go">
+                            <div class="why-go-title">🌟 为什么值得去？</div>
+                            <ul>
+                                <li><strong>人少景美</strong>：可能整个海滩就你们一家人</li>
+                                <li><strong>沙滩品质高</strong>：沙子细腻干净，不扎脚</li>
+                                <li><strong>日落绝美</strong>：东海岸看日落的最佳位置之一</li>
+                                <li><strong>免费</strong>：无门票、无商业套路</li>
+                            </ul>
+                        </div>
+                        <div class="spot-play">
+                            <div class="spot-play-title">🎯 经典玩法</div>
+                            <ul style="padding-left:20px; margin:0;">
+                                <li>带条野餐垫，坐在沙滩上看日落</li>
+                                <li>让孩子捡贝壳、玩沙、踏浪</li>
+                                <li>带上零食和饮料，海边野餐</li>
+                                <li>日落后可以看星星，这里光污染很少</li>
+                            </ul>
+                        </div>
+                        <div class="spot-tips">⚠️ 这里配套设施较少，没有淋浴和更衣室，建议在东郊椰林玩好再来看日落</div>
+                    </div>
+                </div>
+
+                <div class="tl-item">
+                    <div class="tl-dot food"></div>
+                    <div class="tl-time">19:00-20:30</div>
+                    <div class="tl-title">🍗 晚餐：文昌鸡 <span class="tag tag-food">必吃</span></div>
+                    <div class="tl-desc">来文昌必吃文昌鸡！白切文昌鸡皮脆肉嫩，配上灵魂蘸料，鲜美无比。推荐龙楼镇上的老字号。</div>
+                </div>
+
+                <div class="tl-item">
+                    <div class="tl-dot"></div>
+                    <div class="tl-time">21:00</div>
+                    <div class="tl-title">🏨 入住文昌酒店</div>
+                    <div class="tl-desc">建议住龙楼镇附近，方便明天去航天科普中心。</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="sidebar">
+            <div class="sb-section">
+                <div class="sb-title">🍜 今日美食推荐</div>
+                <div class="food-card">
+                    <div class="food-name">糟粕醋</div>
+                    <div class="food-shop">📍 铺前老街</div>
+                    <div class="food-desc">文昌特色美食，用酿酒后的酒糟发酵成醋，加入海鲜、内脏、蔬菜煮成。酸辣开胃，味道独特，越吃越上瘾！</div>
+                    <div class="food-price">💰 人均 40-60元</div>
+                    <div class="food-tip">💡 第一次吃可能不习惯，但绝对值得尝试</div>
+                </div>
+                <div class="food-card">
+                    <div class="food-name">文昌鸡</div>
+                    <div class="food-shop">📍 文昌各地</div>
+                    <div class="food-desc">海南四大名菜之首！正宗文昌鸡皮黄肉白，皮脆骨酥。白切最能体现原味，配蒜泥酱油或辣椒酱吃。</div>
+                    <div class="food-price">💰 半只约80-100元</div>
+                </div>
+                <div class="food-card">
+                    <div class="food-name">抱罗粉</div>
+                    <div class="food-shop">📍 文昌抱罗镇</div>
+                    <div class="food-desc">海南名粉之一，粉条滑嫩有韧性，汤底用猪骨、牛骨熬制，配上牛肉、猪脚，汤鲜味美。</div>
+                    <div class="food-price">💰 人均 15-25元</div>
+                </div>
+            </div>
+            
+            <div class="sb-section">
+                <div class="sb-title">🏨 住宿推荐</div>
+                <div class="stay-card">
+                    <div class="stay-title">📍 文昌龙楼镇 / 东郊镇</div>
+                    <div class="stay-options">• 经济型：龙楼镇民宿（150-250元）</div>
+                    <div class="stay-options">• 舒适型：东郊椰林度假酒店（300-500元）</div>
+                    <div class="stay-options">• 特色型：椰林民宿（可体验乡村生活）</div>
+                    <div class="stay-tip">💡 住龙楼镇方便第二天去航天科普中心</div>
+                </div>
+            </div>
+            
+            <div class="sb-section">
+                <div class="sb-title">🚗 自驾Tips</div>
+                <div class="drive-card">
+                    <div class="drive-title">今日路况</div>
+                    <div class="drive-content">
+                        <p>• 铺前大桥：风大时可能限速或封桥，提前查路况</p>
+                        <p>• 东郊椰林：路窄弯多，小心会车</p>
+                        <p>• 月亮湾：最后一段土路，SUV无压力</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sb-section">
+                <div class="sb-title">⚠️ 避坑指南</div>
+                <div class="warn-card">
+                    <div class="warn-title">🚫 今日避坑要点</div>
+                    <ul class="warn-list">
+                        <li><strong>红树林</strong>：坐船先讲价，别被忽悠包船</li>
+                        <li><strong>椰林电瓶车</strong>：检查好电量和刹车，押金要收据</li>
+                        <li><strong>文昌鸡</strong>：认准老字号，路边摊品质参差不齐</li>
+                        <li><strong>时间控制</strong>：今天景点多，每个点别停太久</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== DAY 3 ==================== -->
+<div class="card day-3">
+    <div class="day-header">
+        <div class="day-header-top">
+            <div class="day-title">
+                <span class="day-num">D3</span>
+                <div class="day-info">
+                    <h3>文昌·航天与礁石</h3>
+                    <p>航天科普中心 → 石头公园</p>
+                </div>
+            </div>
+            <div class="day-badges">
+                <span class="badge">🚗 约30km</span>
+                <span class="badge">⏱️ 科普探索日</span>
+            </div>
+        </div>
+    </div>
+    <div class="day-body">
+        <div class="main-content">
+            <div class="timeline">
+                <div class="tl-item">
+                    <div class="tl-dot"></div>
+                    <div class="tl-time">08:00-09:00</div>
+                    <div class="tl-title">🥣 酒店早餐 + 出发</div>
+                    <div class="tl-desc">今天行程较轻松，可以睡个懒觉再出发。航天科普中心9点开门。</div>
+                </div>
+
+                <div class="tl-item">
+                    <div class="tl-dot major"></div>
+                    <div class="tl-time">09:00-12:00</div>
+                    <div class="tl-title">🚀 航天科普中心 <span class="tag tag-must">必去</span><span class="tag tag-scenic">亲子</span></div>
+                    <div class="tl-desc">中国四大航天发射场之一的文昌航天发射场科普基地。可以近距离参观火箭发射塔架，了解航天知识，是孩子太空梦的起点！</div>
+                    
+                    <div class="spot-detail">
+                        <div class="spot-detail-title">📍 景点深度介绍</div>
+                        <div class="spot-detail-grid">
+                            <div class="spot-detail-item"><strong>门票：</strong>成人120元，儿童60元</div>
+                            <div class="spot-detail-item"><strong>建议时长：</strong>3-4小时</div>
+                            <div class="spot-detail-item"><strong>开放时间：</strong>09:00-17:30</div>
+                            <div class="spot-detail-item"><strong>地址：</strong>文昌市龙楼镇</div>
+                        </div>
+                        <div class="spot-intro">
+                            <p><strong>这是什么地方？</strong></p>
+                            <p>文昌航天发射场是中国首个开放性滨海航天发射基地，也是目前中国纬度最低的发射场。这里发射了天问一号火星探测器、嫦娥五号月球探测器、中国空间站核心舱等重量级航天器，见证了中国航天的多个历史性时刻。</p>
+                            <p style="margin-top:8px;">航天科普中心是发射场的配套景区，包含航天科普馆、火箭组装厂房、发射塔架观景台等多个区域。游客可以乘坐观光车深入基地内部，近距离观看长征五号、长征七号火箭发射塔架，了解火箭从组装到发射的全过程。</p>
+                            <p style="margin-top:8px;">馆内有大量互动体验项目：模拟太空舱、VR太空漫步、航天员训练体验等，是孩子进行航天科普教育的绝佳场所。</p>
+                        </div>
+                        <div class="why-go">
+                            <div class="why-go-title">🌟 为什么值得去？</div>
+                            <ul>
+                                <li><strong>独一无二</strong>：中国唯一开放参观的现役航天发射场</li>
+                                <li><strong>科普价值极高</strong>：真实的火箭、发射塔，比任何科技馆都震撼</li>
+                                <li><strong>激发梦想</strong>：点燃孩子的航天梦和科学兴趣</li>
+                                <li><strong>互动体验丰富</strong>：模拟太空舱、VR体验，孩子玩得停不下来</li>
+                                <li><strong>运气好能看发射</strong>：如果赶上发射任务，是一生难忘的体验</li>
+                            </ul>
+                        </div>
+                        <div class="spot-play">
+                            <div class="spot-play-title">🎯 经典玩法 / 带娃技巧</div>
+                            <ul style="padding-left:20px; margin:0;">
+                                <li>先坐观光车看发射塔架（精华部分），再逛科普馆</li>
+                                <li>讲解员的讲解非常精彩，建议跟团听</li>
+                                <li>VR太空体验和模拟太空舱孩子最喜欢，多留时间</li>
+                                <li>出发前可以和孩子一起看航天纪录片，增加代入感</li>
+                                <li>买个航天纪念品（火箭模型、宇航员玩偶）作纪念</li>
+                            </ul>
+                        </div>
+                        <div class="kid-tips">
+                            <div class="kid-tips-title">👶 带娃注意事项</div>
+                            <ul>
+                                <li>景区很大，走路较多，给孩子穿舒适的鞋</li>
+                                <li>部分区域禁止拍照，遵守规定</li>
+                                <li>馆内空调足，可以带件薄外套</li>
+                                <li>提前查询是否有发射任务，赶上发射窗口期可能闭馆</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tl-item">
+                    <div class="tl-dot food"></div>
+                    <div class="tl-time">12:00-13:00</div>
+                    <div class="tl-title">🍜 午餐：龙楼镇 <span class="tag tag-food">海鲜</span></div>
+                    <div class="tl-desc">龙楼镇是文昌的海鲜集散地，海鲜新鲜又便宜。推荐龙楼镇海鲜市场或者镇上的海鲜排档。</div>
+                </div>
+
+                <div class="tl-item">
+                    <div class="tl-dot"></div>
+                    <div class="tl-time">13:00-13:30</div>
+                    <div class="tl-title">😴 午休时间</div>
+                    <div class="tl-desc">回酒店或在车里午休一下，下午去石头公园玩会比较晒。</div>
+                </div>
+
+                <div class="tl-item">
+                    <div class="tl-dot drive"></div>
+                    <div class="tl-time">15:00-15:30</div>
+                    <div class="tl-title">🚗 前往石头公园 <span class="tag tag-drive">车程30分钟</span></div>
+                    <div class="tl-desc">从龙楼镇出发，沿海岸线向东，很快就到石头公园。</div>
+                </div>
+
+                <div class="tl-item">
+                    <div class="tl-dot major"></div>
+                    <div class="tl-time">15:30-18:00</div>
+                    <div class="tl-title">🪨 石头公园 <span class="tag tag-must">必去</span><span class="tag tag-scenic">地质奇观</span></div>
+                    <div class="tl-desc">海南最壮观的海蚀地貌景观，千奇百怪的礁石被海浪冲刷成各种形状，是地质科普和摄影的绝佳地点。</div>
+                    
+                    <div class="spot-detail">
+                        <div class="spot-detail-title">📍 景点深度介绍</div>
+                        <div class="spot-detail-grid">
+                            <div class="spot-detail-item"><strong>门票：</strong>免费</div>
+                            <div class="spot-detail-item"><strong>建议时长：</strong>2-3小时</div>
+                            <div class="spot-detail-item"><strong>最佳时间：</strong>下午4点后（光线好+退潮）</div>
+                            <div class="spot-detail-item"><strong>注意：</strong>涨潮时部分区域危险</div>
+                        </div>
+                        <div class="spot-intro">
+                            <p><strong>这是什么地方？</strong></p>
+                            <p>石头公园位于文昌市龙楼镇，是一片绵延数公里的海蚀地貌景观区。这里的礁石历经亿万年的海浪冲刷、风化侵蚀，形成了千奇百怪的形态：有的像蘑菇，有的像乌龟，有的像蹲伏的狮子，大自然的鬼斧神工令人叹为观止。</p>
+                            <p style="margin-top:8px;">这里的礁石是花岗岩和玄武岩，颜色以灰黑色为主，在夕阳的照射下呈现出金红色的光泽，是摄影爱好者的天堂。由于开发程度低，保持着原始的自然状态，没有围栏和铺装道路，需要在礁石间攀爬穿行，很有探险的感觉。</p>
+                        </div>
+                        <div class="why-go">
+                            <div class="why-go-title">🌟 为什么值得去？</div>
+                            <ul>
+                                <li><strong>地质奇观</strong>：大自然的雕塑公园，每块石头都独一无二</li>
+                                <li><strong>探险乐趣</strong>：在礁石间攀爬穿行，孩子超喜欢</li>
+                                <li><strong>摄影圣地</strong>：海浪拍打礁石，日落金光，大片随手拍</li>
+                                <li><strong>免费开放</strong>：没有商业化，纯天然体验</li>
+                                <li><strong>科普教育</strong>：现场讲解海蚀地貌的形成，孩子长知识</li>
+                            </ul>
+                        </div>
+                        <div class="spot-play">
+                            <div class="spot-play-title">🎯 经典玩法 / 带娃技巧</div>
+                            <ul style="padding-left:20px; margin:0;">
+                                <li>退潮时去，可以深入礁石区探险</li>
+                                <li>带孩子玩"找形状"游戏：这块石头像什么？</li>
+                                <li>在礁石缝隙里找小螃蟹、海螺、海胆</li>
+                                <li>傍晚时分来，既不晒又能拍日落大片</li>
+                                <li>爬上最高的礁石，俯瞰整个石头公园</li>
+                            </ul>
+                        </div>
+                        <div class="kid-tips">
+                            <div class="kid-tips-title">👶 带娃注意事项</div>
+                            <ul>
+                                <li><strong>鞋子很重要</strong>：必须穿防滑、包脚趾的鞋（溯溪鞋最佳）</li>
+                                <li>礁石锋利且湿滑，全程牵好孩子的手</li>
+                                <li>注意潮汐时间，涨潮时立即撤离低处</li>
+                                <li>带创可贴，以防磕碰擦伤</li>
+                                <li>不要让孩子单独攀爬高处礁石</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tl-item">
+                    <div class="tl-dot food"></div>
+                    <div class="tl-time">18:30-20:00</div>
+                    <div class="tl-title">🦀 晚餐：龙楼海鲜 <span class="tag tag-food">海鲜</span></div>
+                    <div class="tl-desc">龙楼镇的海鲜物美价廉，点一桌海鲜犒劳自己。螃蟹、虾、贝类都很新鲜。</div>
+                </div>
+
+                <div class="tl-item">
+                    <div class="tl-dot"></div>
+                    <div class="tl-time">20:30</div>
+                    <div class="tl-title">🏨 入住酒店休息</div>
+                    <div class="tl-desc">今晚继续住文昌，明天出发去石梅湾。</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="sidebar">
+            <div class="sb-section">
+                <div class="sb-title">🍜 今日美食推荐</div>
+                <div class="food-card">
+                    <div class="food-name">龙楼海鲜</div>
+                    <div class="food-shop">📍 龙楼镇海鲜市场</div>
+                    <div class="food-desc">文昌最新鲜的海鲜集散地，渔民直接上岸销售。和合螃蟹、石斑鱼、各种贝类，比三亚便宜一半。</div>
+                    <div class="food-price">💰 人均 80-150元</div>
+                    <div class="food-tip">💡 自己买海鲜拿到旁边排档加工，加工费每斤10-15元</div>
+                </div>
+                <div class="food-card">
+                    <div class="food-name">铺前马鲛鱼</div>
+                    <div class="food-shop">📍 文昌铺前镇</div>
+                    <div class="food-desc">铺前的马鲛鱼全国有名，肉质鲜美无刺，煎着吃香脆可口，是孩子也能放心吃的海鲜。</div>
+                    <div class="food-price">💰 约60-80元/斤</div>
+                </div>
+            </div>
+            
+            <div class="sb-section">
+                <div class="sb-title">🏨 住宿推荐</div>
+                <div class="stay-card">
+                    <div class="stay-title">📍 继续住文昌龙楼镇</div>
+                    <div class="stay-options">• 经济型：龙楼镇民宿（150-250元）</div>
+                    <div class="stay-options">• 舒适型：航天城附近酒店（300-500元）</div>
+                    <div class="stay-tip">💡 连住两晚省去换酒店的麻烦</div>
+                </div>
+            </div>
+            
+            <div class="sb-section">
+                <div class="sb-title">🔭 航天发射小贴士</div>
+                <div class="drive-card">
+                    <div class="drive-title">🚀 如何看火箭发射？</div>
+                    <div class="drive-content">
+                        <p>• 关注"文昌航天发射场"官方公众号获取发射预告</p>
+                        <p>• 发射日当天航天科普中心通常闭馆</p>
+                        <p>• 最佳观测点：淇水湾沙滩（免费）</p>
+                        <p>• 发射通常在凌晨或傍晚，做好熬夜准备</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="sb-section">
+                <div class="sb-title">⚠️ 避坑指南</div>
+                <div class="warn-card">
+                    <div class="warn-title">🚫 今日避坑要点</div>
+                    <ul class="warn-list">
+                        <li><strong>航天科普中心</strong>：节假日人多，建议提前网上购票</li>
+                        <li><strong>石头公园</strong>：一定看潮汐表！涨潮时非常危险</li>
+                        <li><strong>穿着</strong>：石头公园禁止拖鞋/凉鞋，否则进不去</li>
+                        <li><strong>海鲜</strong>：看清价格是按只还是按斤</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- ==================== DAY 4 ==================== -->
+<div class="card day-4">
+    <div class="day-header">
+        <div class="day-header-top">
+            <div class="day-title">
+                <span class="day-num">D4</span>
+                <div class="day-info">
+                    <h3>琼海·渔港与热带雨林</h3>
+                    <p>潭门渔港 → 兴隆热带植物园 → 石梅湾青皮林</p>
+                </div>
+            </div>
+            <div class="day-badges">
+                <span class="badge">🚗 约120km</span>
+                <span class="badge">⏱️ 转场日</span>
+            </div>
+        </div>
+    </div>
+    <div class="day-body">
+        <div class="main-content">
+            <div class="timeline">
+                <div class="tl-item">
+                    <div class="tl-dot"></div>
+                    <div class="tl-time">08:00-08:30</div>
+                    <div class="tl-title">🥣 酒店早餐 + 退房</div>
+                    <div class="tl-desc">收拾行李，告别文昌，向南进发。今天是转场日，路程较长但风景绝美。</div>
+                </div>
+
+                <div class="tl-item">
+                    <div class="tl-dot drive"></div>
+                    <div class="tl-time">08:30-10:00</div>
+                    <div class="tl-title">🚗 文昌 → 潭门镇 <span class="tag tag-drive">车程1.5小时</span></div>
+                    <div class="tl-desc">走海南环岛高速（东线），约80公里。沿途经过博鳌，可以远眺博鳌亚洲论坛会址。</div>
+                </div>
+
+                <div class="tl-item">
+                    <div class="tl-dot major"></div>
+                    <div class="tl-time">10:00-12:00</div>
+                    <div class="tl-title">⚓ 潭门渔港 <span class="tag tag-must">必去</span><span class="tag tag-scenic">渔村风情</span></div>
+                    <div class="tl-desc">中国最古老的渔港之一，渔民们世代在南海捕鱼。这里保存着完整的渔村文化，可以看渔船、吃海鲜、逛海洋文化展馆。</div>
+                    
+                    <div class="spot-detail">
+                        <div class="spot-detail-title">📍 景点深度介绍</div>
+                        <div class="spot-detail-grid">
+                            <div class="spot-detail-item"><strong>门票：</strong>免费</div>
+                            <div class="spot-detail-item"><strong>建议时长：</strong>1.5-2小时</div>
+                            <div class="spot-detail-item"><strong>最佳时间：</strong>上午（渔船多）</div>
+                            <div class="spot-detail-item"><strong>特色：</strong>南海文化+新鲜海鲜</div>
+                        </div>
+                        <div class="spot-intro">
+                            <p><strong>这是什么地方？</strong></p>
+                            <p>潭门镇位于琼海市，是海南岛通往南沙群岛最近的港口，也是中国南海渔业最重要的基地之一。潭门渔民世代以捕捞为生，是中国最早开发南海的群体，有"闯海人"之称。</p>
+                            <p style="margin-top:8px;">这里有全国唯一的南海渔业文化展馆，展示潭门渔民千年闯海的历史和独特的航海技术——《更路簿》（一种世代相传的手抄航海指南）。渔港里停满了大大小小的渔船，有浓郁的渔村生活气息。</p>
+                            <p style="margin-top:8px;">近年来潭门镇进行了风貌改造，老街变成了渔村风情步行街，既有历史底蕴又不失现代感。</p>
+                        </div>
+                        <div class="why-go">
+                            <div class="why-go-title">🌟 为什么值得去？</div>
+                            <ul>
+                                <li><strong>历史人文</strong>：了解中国渔民开发南海的历史</li>
+                                <li><strong>渔港风情</strong>：看渔船、渔网、渔民生活，真实又有趣</li>
+                                <li><strong>海鲜最新鲜</strong>：渔船直接靠岸，海鲜从海里到餐桌不超过1小时</li>
+                                <li><strong>教育意义</strong>：让孩子了解食物从哪里来</li>
+                                <li><strong>顺路经过</strong>：去石梅湾的必经之路</li>
+                            </ul>
+                        </div>
+                        <div class="spot-play">
+                            <div class="spot-play-title">🎯 经典玩法 / 带娃技巧</div>
+                            <ul style="padding-left:20px; margin:0;">
+                                <li>先逛南海渔业文化展馆（免费），了解潭门历史</li>
+                                <li>带孩子到码头看渔船，给他讲渔民的故事</li>
+                                <li>上午去看渔民卸货，运气好能看到奇怪的深海鱼</li>
+                                <li>在渔港吃一顿海鲜，体验最新鲜的海味</li>
+                                <li>买点海产品干货当手信（鱿鱼干、虾干等）</li>
+                            </ul>
+                        </div>
+                        <div class="spot-tips">⚠️ 码头区域注意安全，牵好孩子，不要太靠近水边</div>
+                    </div>
+                </div>
+
+                <div class="tl-item">
+                    <div class="tl-dot food"></div>
+                    <div class="tl-time">12:00-13:00</div>
+                    <div class="tl-title">🦐 午餐：潭门海鲜 <span class="tag tag-food">必吃</span></div>
+                    <div class="tl-desc">潭门海鲜以"新鲜"著称，码头旁边就是海鲜排档。推荐清蒸石斑鱼、白灼虾、辣炒花蛤。</div>
+                </div>
+
+                <div class="tl-item">
+                    <div class="tl-dot drive"></div>
+                    <div class="tl-time">13:00-14:00</div>
+                    <div class="tl-title">🚗 潭门 → 兴隆热带植物园 <span class="tag tag-drive">车程1小时</span></div>
+                    <div class="tl-desc">走海南环岛高速继续南下，约50公里到万宁兴隆。</div>
+                </div>
+
+                <div class="tl-item">
+                    <div class="tl-dot major"></div>
+                    <div class="tl-time">14:00-16:30</div>
+                    <div class="tl-title">🌺 兴隆热带植物园
