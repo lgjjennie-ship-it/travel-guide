@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>海南岛亲子自驾完整攻略</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Microsoft YaHei', sans-serif; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); min-height: 100vh; }
+        .header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 25px 20px; text-align: center; color: white; position: sticky; top: 0; z-index: 100; box-shadow: 0 5px 30px rgba(0,0,0,0.3); }
+        .header h1 { font-size: 1.6rem; margin-bottom: 8px; }
+        .header-info { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; font-size: 0.85rem; }
+        .header-info span { background: rgba(255,255,255,0.2); padding: 4px 10px; border-radius: 12px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 15px; }
+        .card { background: white; border-radius: 16px; margin-bottom: 20px; overflow: hidden; box-shadow: 0 8px 30px rgba(0,0,0,0.15); }
+        .section-title { font-size: 1.1rem; color: #333; padding: 15px 20px; border-bottom: 2px solid #eee; display: flex; align-items: center; gap: 8px; }
+        
+        /* 路线总览 */
+        .route-flow { display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 6px; padding: 20px; background: #f8f9fa; }
+        .route-node { text-align: center; }
+        .route-city { background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 10px 14px; border-radius: 20px; font-weight: bold; font-size: 0.85rem; box-shadow: 0 3px 10px rgba(102,126,234,0.3); }
+        .route-nights { font-size: 0.7rem; color: #666; margin-top: 4px; }
+        .route-arrow { color: #667eea; font-size: 1.2rem; display: flex; flex-direction: column; align-items: center; }
+        .route-km { font-size: 0.65rem; color: #999; }
+        
+        /* 每日卡片 */
+        .day-header { padding: 15px 20px; color: white; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .day-1 .day-header { background: linear-gradient(135deg, #f093fb, #f5576c); }
+        .day-2 .day-header { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+        .day-3 .day-header { background: linear-gradient(135deg, #43e97b, #38f9d7); }
+        .day-4 .day-header { background: linear-gradient(135deg, #fa709a, #fee140); }
+        .day-5 .day-header { background: linear-gradient(135deg, #a18cd1, #fbc2eb); }
+        .day-6 .day-header { background: linear-gradient(135deg, #667eea, #764ba2); }
+        .day-num { font-size: 1.8rem; font-weight: bold; opacity: 0.9; }
+        .day-info h3 { font-size: 1.1rem; }
+        .day-info span { font-size: 0.85rem; opacity: 0.9; }
+        .day-badge { background: rgba(255,255,255,0.25); padding: 4px 10px; border-radius: 12px; font-size: 0.8rem; }
+        
+        .day-body { display: grid; grid-template-columns: 1fr 280px; }
+        @media (max-width: 800px) { .day-body { grid-template-columns: 1fr; } }
+        
+        /* 时间线 */
+        .timeline-area { padding: 20px; border-right: 1px solid #eee; }
+        @media (max-width: 800px) { .timeline-area { border-right: none; border-bottom: 1px solid #eee; } }
+        .timeline { position: relative; padding-left: 28px; }
+        .timeline::before { content: ''; position: absolute; left: 8px; top: 5px; bottom: 5px; width: 3px; background: linear-gradient(to bottom, #667eea, #764ba2); border-radius: 3px; }
+        .tl-item { position: relative; margin-bottom: 18px; }
+        .tl-item:last-child { margin-bottom: 0; }
+        .tl-dot { position: absolute; left: -24px; top: 3px; width: 14px; height: 14px; border-radius: 50%; border: 3px solid #667eea; background: white; }
+        .tl-dot.major { background: #667eea; width: 16px; height: 16px; left: -25px; }
+        .tl-dot.food { border-color: #f5576c; }
+        .tl-dot.food.major { background: #f5576c; }
+        .tl-dot.drive { border-color: #ff9800; }
+        .tl-time { font-size: 0.75rem; color: #999; margin-bottom: 3px; }
+        .tl-title { font-size: 0.95rem; font-weight: bold; color: #333; margin-bottom: 4px; display: flex; align-items: center; flex-wrap: wrap; gap: 6px; }
+        .tl-desc { color: #666; font-size: 0.85rem; line-height: 1.5; }
+        .tl-tip { background: #fff8e1; border-left: 3px solid #ffc107; padding: 6px 10px; margin-top: 6px; border-radius: 0 6px 6px 0; font-size: 0.8rem; color: #666; }
+        .tl-tip strong { color: #f57c00; }
+        
+        .tag { display: inline-block; padding: 2px 6px; border-radius: 8px; font-size: 0.65rem; font-weight: bold; }
+        .tag-must { background: #e8f5e9; color: #2e7d32; }
+        .tag-food { background: #fce4ec; color: #c2185b; }
+        .tag-scenic { background: #e3f2fd; color: #1565c0; }
+        .tag-drive { background: #fff3e0; color: #ef6c00; }
+        .tag-secret { background: #f3e5f5; color: #7b1fa2; }
+        
+        /* 侧边栏 */
+        .sidebar { background: #fafafa; padding: 15px; font-size: 0.85rem; }
+        .sb-section { margin-bottom: 15px; }
+        .sb-section:last-child { margin-bottom: 0; }
+        .sb-title { font-size: 0.85rem; font-weight: bold; color: #333; margin-bottom: 10px; padding-bottom: 6px; border-bottom: 2px dashed #ddd; }
+        
+        .food-card { background: white; border-radius: 10px; padding: 10px; margin-bottom: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.06); }
+        .food-name { font-weight: bold; color: #c2185b; font-size: 0.9rem; }
+        .food-shop { font-size: 0.75rem; color: #666; margin: 3px 0; }
+        .food-desc { font-size: 0.75rem; color: #888; }
+        .food-price { font-size: 0.7rem; color: #999; margin-top: 3px; }
+        
+        .spot-card { background: white; border-radius: 10px; padding: 10px; margin-bottom: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.06); }
+        .spot-name { font-weight: bold; color: #1565c0; font-size: 0.9rem; margin-bottom: 4px; }
+        .spot-info { font-size: 0.75rem; color: #666; margin-bottom: 2px; }
+        .spot-play { font-size: 0.75rem; color: #2e7d32; background: #e8f5e9; padding: 5px 8px; border-radius: 6px; margin-top: 5px; }
+        
+        .stay-card { background: linear-gradient(135deg, #e8f5e9, #c8e6c9); border-radius: 10px; padding: 10px; }
+        .stay-title { font-weight: bold; color: #2e7d32; font-size: 0.85rem; margin-bottom: 4px; }
+        .stay-info { font-size: 0.75rem; color: #555; }
+        
+        .drive-card { background: linear-gradient(135deg, #fff3e0, #ffe0b2); border-radius: 10px; padding: 10px; margin-bottom: 8px; }
+        .drive-title { font-weight: bold; color: #e65100; font-size: 0.85rem; margin-bottom: 4px; }
+        .drive-info { font-size: 0.75rem; color: #666; }
+        
+        .warn-card { background: linear-gradient(135deg, #ffebee, #ffcdd2); border-radius: 10px; padding: 10px; }
+        .warn-title { font-weight: bold; color: #c62828; font-size: 0.8rem; margin-bottom: 4px; }
+        .warn-list { font-size: 0.75rem; color: #666; padding-left: 15px; margin: 0; }
+        .warn-list li { margin-bottom: 2px; }
+        
+        /* 统计 */
+        .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); gap: 10px; padding: 15px; }
+        .stat { text-align: center; padding: 12px 8px; background: #f8f9fa; border-radius: 10px; }
+        .stat-icon { font-size: 1.3rem; }
+        .stat-val { font-size: 1rem; font-weight: bold; color: #667eea; }
+        .stat-label { font-size: 0.7rem; color: #666; }
+        .stat.total { background: linear-gradient(135deg, #667eea, #764ba2); }
+        .stat.total .stat-val, .stat.total .stat-label { color: white; }
+        
+        /* 美食总览 */
+        .food-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; padding: 15px; }
+        .food-item { background: #fce4ec; padding: 10px; border-radius: 10px; }
+        .food-item-name { font-weight: bold; color: #c2185b; font-size: 0.9rem; }
+        .food-item-where { font-size: 0.75rem; color: #666; margin-top: 3px; }
+        .food-item-tip { font-size: 0.7rem; color: #888; margin-top: 3px; }
+        
+        /* 实用信息 */
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; padding: 15px; }
+        .info-box { background: #f8f9fa; border-radius: 10px; padding: 12px; }
+        .info-box-title { font-weight: bold; color: #333; margin-bottom: 8px; font-size: 0.9rem; }
+        .info-box ul { font-size: 0.8rem; color: #666; padding-left: 18px; margin: 0; }
+        .info-box li { margin-bottom: 4px; }
+        
+        .footer { text-align: center; padding: 25px; color: rgba(255,255,255,0.7); font-size: 0.85rem; }
+        @media print { body { background: white; } .header { position: relative; } }
+    </style>
+</head>
+<body>
+<div class="header">
+    <h1>🚗 海南岛亲子自驾完整攻略</h1>
+    <div class="header-info">
+        <span>📅 6天5晚</span>
+        <span>🚗 450km</span>
+        <span>👨‍👩‍👧 2大1小</span>
+        <span>💰 9K-15K</span>
+        <span>🌡️ 最佳：2-3月</span>
+    </div>
+</div>
+
+<div class="container">
+
+<!-- 路线总览 -->
+<div class="card">
+    <div class="section-title">🗺️ 路线总览</div>
+    <div class="route-flow">
+        <div class="route-node"><div class="route-city">✈️ 海口</div><div class="route-nights">住1晚</div></div>
+        <div class="route-arrow">→<span class="route-km">80km</span></div>
+        <div class="route-node"><div class="route-city">🌴 文昌</div><div class="route-nights">住2晚</div></div>
+        <div class="route-arrow">→<span class="route-km">120km</span></div>
+        <div class="route-node"><div class="route-city">🌿 石梅湾</div><div class="route-nights">住1晚</div></div>
+        <div class="route-arrow">→<span class="route-km">50km</span></div>
+        <div class="route-node"><div class="route-city">🏖️ 清水湾</div><div class="route-nights">住1晚</div></div>
+        <div class="route-arrow">→<span class="route-km">200km</span></div>
+        <div class="route-node"><div class="route-city">✈️ 海口</div><div class="route-nights">返程</div></div>
+    </div>
+    <div class="stats">
+        <div class="stat"><div class="stat-icon">🚗</div><div class="stat-val">SUV</div><div class="stat-label">租车建议</div></div>
+        <div class="stat"><div class="stat-icon">⛽</div><div class="stat-val">300-400</div><div class="stat-label">油费(元)</div></div>
+        <div class="stat"><div class="stat-icon">🎫</div><div class="stat-val">~910</div><div class="stat-label">门票(元)</div></div>
+        <div class="stat"><div class="stat-icon">🌅</div><div class="stat-val">06:45</div><div class="stat-label">日出</div></div>
+        <div class="stat"><div class="stat-icon">🌇</div><div class="stat-val">18:45</div><div class="stat-label">日落</div></div>
+        <div class="stat total"><div class="stat-icon">💰</div><div class="stat-val">9K-15K</div><div class="stat-label">总预算</div></div>
+    </div>
+</div>
+
+<!-- Day 1 -->
+<div class="card day-1">
+    <div class="day-header">
+        <div style="display:flex;align-items:center;gap:12px;">
+            <div class="day-num">D1</div>
+            <div class="day-info"><h3>海口（落地日）</h3><span>苏州 ✈️ 海口美兰机场</span></div>
+        </div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            <span class="day-badge">🚗 0km</span>
+            <span class="day-badge">🏨 海口市区</span>
+        </div>
+    </div>
+    <div class="day-body">
+        <div class="timeline-area">
+            <div class="timeline">
+                <div class="tl-item">
+                    <div class="tl-dot"></div>
+                    <div class="tl-time">14:00</div>
+                    <div class="tl-title">✈️ 抵达海口美兰机场</div>
+                    <div class="tl-desc">机场租车柜台取车（提前App预约SUV，推荐神州/一嗨）</div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-dot"></div>
+                    <div class="tl-time">15:30</div>
+                    <div class="tl-title">🏨 入住酒店</div>
+                    <div class="tl-desc">推荐住国贸或海甸岛，离老街近</div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-dot major"></div>
+                    <div class="tl-time">16:45-18:30</div>
+                    <div class="tl-title">🏛️ 骑楼老街 <span class="tag tag-must">必去</span></div>
+                    <div class="tl-desc">南洋风情老街，边吃边逛<br><b>路线：</b>水巷口→中山路→博爱北路→得胜沙路</div>
+                    <div class="tl-tip"><strong>💡 玩法：</strong>让娃数不同窗户样式，清补凉自选配料像DIY甜品</div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-dot"></div>
+                    <div class="tl-time">18:50-19:30</div>
+                    <div class="tl-title">🌅 假日海滩看日落</div>
+                    <div class="tl-desc">海口最方便公共海滩，日落面朝西（免费）</div>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar">
+            <div class="sb-section">
+                <div class="sb-title">🍜 今日美食</div>
+                <div class="food-card">
+                    <div class="food-name">海南粉 ⭐</div>
+                    <div class="food-shop">📍 亚妹海南粉（水巷口）</div>
+                    <div class="food-desc">腌粉拌着吃，酸甜口</div>
+                    <div class="food-price">💰 ~15元</div>
+                </div>
+                <div class="food-card">
+                    <div class="food-name">清补凉 ⭐</div>
+                    <div class="food-shop">📍 老彭记（得胜沙路）</div>
+                    <div class="food-desc">椰奶打底，十几种配料自选</div>
+                    <div class="food-price">💰 ~15-20元</div>
+                </div>
+                <div class="food-card">
+                    <div class="food-name">老盐柠檬水</div>
+                    <div class="food-shop">📍 街边随处有</div>
+                    <div class="food-price">💰 ~8-12元</div>
+                </div>
+            </div>
+            <div class="sb-section">
+                <div class="sb-title">🏛️ 景点详情</div>
+                <div class="spot-card">
+                    <div class="spot-name">骑楼老街</div>
+                    <div class="spot-info"><b>门票：</b>免费</div>
+                    <div class="spot-info"><b>时长：</b>1.5-2h</div>
+                    <div class="spot-info"><b>最佳：</b>16:00后（中午太晒店铺休息）</div>
+                    <div class="spot-play">✨ 真正有生活气息的老城区，不是人造景点</div>
+                </div>
+            </div>
+            <div class="sb-section">
+                <div class="sb-title">🏨 住宿推荐</div>
+                <div class="stay-card">
+                    <div class="stay-title">海口市区</div>
+                    <div class="stay-info">香格里拉 / 华彬 / 万豪</div>
+                    <div class="stay-info">💰 400-800元/晚</div>
+                </div>
+            </div>
+            <div class="sb-section">
+                <div class="sb-title">⚠️ 避坑</div>
+                <div class="warn-card">
+                    <ul class="warn-list">
+                        <li>❌ 中午去老街（太晒+店铺午休）</li>
+                        <li>❌ 老街吃椰子鸡（不正宗）</li>
+                        <li>❌ 假日海滩游泳（设施一般）</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Day 2 -->
+<div class="card day-2">
+    <div class="day-header">
+        <div style="display:flex;align-items:center;gap:12px;">
+            <div class="day-num">D2</div>
+            <div class="day-info"><h3>海口 → 文昌</h3><span>滨海公路看风景</span></div>
+        </div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            <span class="day-badge">🚗 80km</span>
+            <span class="day-badge">🏨 月亮湾</span>
+        </div>
+    </div>
+    <div class="day-body">
+        <div class="timeline-area">
+            <div class="timeline">
+                <div class="tl-item">
+                    <div class="tl-dot drive"></div>
+                    <div class="tl-time">09:30</div>
+                    <div class="tl-title">🚗 出发（走S201滨海路）<span class="tag tag-drive">风景路</span></div>
+                    <div class="tl-desc">不走高速！沿途看海景椰林</div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-dot major"></div>
+                    <div class="tl-time">10:15-10:45</div>
+                    <div class="tl-title">🌿 东寨港红树林 <span class="tag tag-scenic">沿途</span></div>
+                    <div class="tl-desc">坐船穿行红树林，看招潮蟹、弹涂鱼</div>
+                    <div class="tl-tip"><strong>💡 带娃：</strong>像进入"红树林小世界"</div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-dot"></div>
+                    <div class="tl-time">11:00-11:15</div>
+                    <div class="tl-title">🏛️ 铺前老街 <span class="tag tag-secret">人少</span></div>
+                    <div class="tl-desc">比海口老街更原生态，游客几乎没有</div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-dot"></div>
+                    <div class="tl-time">11:15-11:30</div>
+                    <div class="tl-title">🌉 铺前跨海大桥</div>
+                    <div class="tl-desc">车上看风景（不停车），海上开车！</div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-dot food major"></div>
+                    <div class="tl-time">12:00-13:00</div>
+                    <div class="tl-title">🍗 文昌鸡午餐 <span class="tag tag-food">必吃</span></div>
+                    <div class="tl-desc">南门鸡饭店（龙楼镇），原产地最正宗！</div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-dot major"></div>
+                    <div class="tl-time">15:30-17:30</div>
+                    <div class="tl-title">🌴 东郊椰林 <span class="tag tag-must">必去</span></div>
+                    <div class="tl-desc">租电瓶车穿行→看老板爬树摘椰子→喝椰子水→吃椰子冻</div>
+                    <div class="tl-tip"><strong>💡 带娃：</strong>让娃抱椰子试重量，问"椰子水和椰奶有啥区别"</div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-dot major"></div>
+                    <div class="tl-time">18:00-19:00</div>
+                    <div class="tl-title">🌙 月亮湾 <span class="tag tag-secret">人少秘境</span></div>
+                    <div class="tl-desc">整片沙滩可能只有你们！看日落玩沙</div>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar">
+            <div class="sb-section">
+                <div class="sb-title">🍜 今日美食</div>
+                <div class="food-card">
+                    <div class="food-name">文昌鸡 ⭐⭐⭐</div>
+                    <div class="food-shop">📍 南门鸡饭店（龙楼镇）</div>
+                    <div class="food-desc">海南四大名菜之首，白切最经典</div>
+                    <div class="food-price">💰 人均50-60元</div>
+                </div>
+                <div class="food-card">
+                    <div class="food-name">马鲛鱼丸</div>
+                    <div class="food-shop">📍 铺前镇街边</div>
+                    <div class="food-desc">当地特色，新鲜弹牙</div>
+                    <div class="food-price">💰 ~15-20元</div>
+                </div>
+                <div class="food-card">
+                    <div class="food-name">椰子冻</div>
+                    <div class="food-shop">📍 东郊椰林摊位</div>
+                    <div class="food-desc">椰子壳里的椰奶布丁，现做</div>
+                    <div class="food-price">💰 ~15-20元</div>
+                </div>
+            </div>
+            <div class="sb-section">
+                <div class="sb-title">🌴 景点详情</div>
+                <div class="spot-card">
+                    <div class="spot-name">东郊椰林</div>
+                    <div class="spot-info"><b>门票：</b>免费（电瓶车~50元/2h）</div>
+                    <div class="spot-info"><b>时长：</b>2h</div>
+                    <div class="spot-info"><b>最佳：</b>15:00-17:30（避开中午暴晒）</div>
+                    <div class="spot-play">✨ 50万株椰子树，文昌椰子占全海南一半</div>
+                </div>
+                <div class="spot-card">
+                    <div class="spot-name">东寨港红树林</div>
+                    <div class="spot-info"><b>门票：</b>免费（船票~50元/人）</div>
+                    <div class="spot-info"><b>时长：</b>30-40min</div>
+                    <div class="spot-play">✨ 中国最大红树林保护区</div>
+                </div>
+            </div>
+            <div class="sb-section">
+                <div class="sb-title">🛣️ 驾驶指南</div>
+                <div class="drive-card">
+                    <div class="drive-title">S201滨海路 vs G98高速</div>
+                    <div class="drive-info">高速1h但无聊，滨海路1.5-2h但超美！<br>沿途：红树林、铺前老街、跨海大桥</div>
+                </div>
+            </div>
+            <div class="sb-section">
+                <div class="sb-title">🏨 住宿</div>
+                <div class="stay-card">
+                    <div class="stay-title">文昌月亮湾</div>
+                    <div class="stay-info">鲁能希尔顿逸林</div>
+                    <div class="stay-info">💰 500-800元/晚</div>
+                </div>
+            </div>
+            <div class="sb-section">
+                <div class="sb-title">⚠️ 避坑</div>
+                <div class="warn-card">
+                    <ul class="warn-list">
+                        <li>❌ 全程走高速（错过风景）</li>
+                        <li>❌ 椰子超25元（宰客）</li>
+                        <li>❌ 月亮湾下海游泳（浪大）</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Day 3 -->
+<div class="card day-3">
+    <div class="day-header">
+        <div style="display:flex;align-items:center;gap:12px;">
+            <div class="day-num">D3</div>
+            <div class="day-info"><h3>文昌深度游</h3><span>航天+石头公园</span></div>
+        </div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            <span class="day-badge">🚗 20km</span>
+            <span class="day-badge">🏨 月亮湾</span>
+        </div>
+    </div>
+    <div class="day-body">
+        <div class="timeline-area">
+            <div class="timeline">
+                <div class="tl-item">
+                    <div class="tl-dot"></div>
+                    <div class="tl-time">07:00（可选）</div>
+                    <div class="tl-title">🌅 月亮湾看日出</div>
+                    <div class="tl-desc">日出约06:45，看完可回酒店睡回笼觉</div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-dot major"></div>
+                    <div class="tl-time">10:00-12:00</div>
+                    <div class="tl-title">🚀 航天科普中心 <span class="tag tag-must">必去</span></div>
+                    <div class="tl-desc">火箭模型→按发射按钮→穿航天服拍照→远眺发射塔</div>
+                    <div class="tl-tip"><strong>💡 带娃：</strong>提前讲火箭原理，问"中国空间站叫啥"（天宫）</div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-dot food"></div>
+                    <div class="tl-time">12:30</div>
+                    <div class="tl-title">🍜 抱罗粉午餐 <span class="tag tag-food">当地特色</span></div>
+                    <div class="tl-desc">龙楼镇街边粉店，海南四大名粉之一</div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-dot"></div>
+                    <div class="tl-time">14:00-16:00</div>
+                    <div class="tl-title">😴 午休躺平</div>
+                    <div class="tl-desc">不赶路！酒店休息充电</div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-dot major"></div>
+                    <div class="tl-time">16:00-18:00</div>
+                    <div class="tl-title">🪨 石头公园 <span class="tag tag-must">必去</span></div>
+                    <div class="tl-desc">礁石探险→给石头起名字→看海浪拍石→日落拍照</div>
+                    <div class="tl-tip"><strong>💡 带娃：</strong>玩"找像动物的石头"，讲海浪冲刷几千年的故事</div>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar">
+            <div class="sb-section">
+                <div class="sb-title">🚀 景点详情</div>
+                <div class="spot-card">
+                    <div class="spot-name">航天科普中心</div>
+                    <div class="spot-info"><b>门票：</b>成人80元，儿童40元</div>
+                    <div class="spot-info"><b>时长：</b>2h</div>
+                    <div class="spot-info"><b>最佳：</b>10:00-12:00（避开户外暴晒）</div>
+                    <div class="spot-play">✨ 真正的航天基地！长征五号、天问一号从这发射</div>
+                </div>
+                <div class="spot-card">
+                    <div class="spot-name">石头公园</div>
+                    <div class="spot-info"><b>门票：</b>免费</div>
+                    <div class="spot-info"><b>时长：</b>1-1.5h</div>
+                    <div class="spot-info"><b>最佳：</b>16:00-18:00（光线好+能看日落）</div>
+                    <div class="spot-play">✨ 海蚀奇观，石头形状千奇百怪，人少</div>
+                </div>
+            </div>
+            <div class="sb-section">
+                <div class="sb-title">🍜 今日美食</div>
+                <div class="food-card">
+                    <div class="food-name">抱罗粉</div>
+                    <div class="food-shop">📍 龙楼镇街边粉店</div>
+                    <div class="food-desc">汤粉，粗粉配牛肉或猪杂</div>
+                    <div class="food-price">💰 ~15元</div>
+                </div>
+            </div>
+            <div class="sb-section">
+                <div class="sb-title">⚠️ 避坑</div>
+                <div class="warn-card">
+                    <ul class="warn-list">
+                        <li>❌ 中午去航天中心（户外暴晒）</li>
+                        <li>❌ 石头公园穿拖鞋（礁石滑）</li>
+                        <li>❌ 涨潮时去（提前查潮汐）</li>
+                        <li>✅ 关注"文昌发布"看发射预告</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Day 4 -->
+<div class="card day-4">
+    <div class="day-header">
+        <div style="display:flex;align-items:center;gap:12px;">
+            <div class="day-num">D4</div>
+            <div class="day-info"><h3>文昌 → 万宁石梅湾</h3><span>最美滨海公路</span></div>
+        </div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            <span class="day-badge">🚗 120km</span>
+            <span class="day-badge">🏨 石梅湾</span>
+        </div>
+    </div>
+    <div class="day-body">
+        <div class="timeline-area">
+            <div class="timeline">
+                <div class="tl-item">
+                    <div class="tl-dot drive"></div>
+                    <div class="tl-time">09:30</div>
+                    <div class="tl-title">🚗 出发（高速+滨海路）</div>
+                    <div class="tl-desc">先G98高速，琼海下高速转滨海旅游公路</div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-dot"></div>
+                    <div class="tl-time">10:15-10:45</div>
+                    <div class="tl-title">🐟 潭门渔港 <span class="tag tag-scenic">沿途</span></div>
+                    <div class="tl-desc">渔港风情，吃海鲜便宜新鲜</div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-dot drive"></div>
+                    <div class="tl-time">10:45-11:30</div>
+                    <div class="tl-title">🛣️ 滨海旅游公路 <span class="tag tag-drive">最美公路</span></div>
+                    <div class="tl-desc">一侧大海一侧椰林，随时停车拍照</div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-dot major"></div>
+                    <div class="tl-time">11:30-13:00</div>
+                    <div class="tl-title">🌿 兴隆热带植物园 <span class="tag tag-must">必去</span></div>
+                    <div class="tl-desc">认识咖啡树→可可树→香草兰→胡椒</div>
+                    <div class="tl-tip"><strong>💡 带娃：</strong>活的植物课！问"咖啡/巧克力怎么来的"</div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-dot food major"></div>
+                    <div class="tl-time">13:00-14:00</div>
+                    <div class="tl-title">☕ 兴隆咖啡+印尼菜 <span class="tag tag-food">必吃</span></div>
+                    <div class="tl-desc">归侨文化精髓！咖喱、沙爹、椰浆饭</div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-dot"></div>
+                    <div class="tl-time">15:00-18:00</div>
+                    <div class="tl-title">🏖️ 石梅湾躺平</div>
+                    <div class="tl-desc">酒店泳池→沙滩发呆→青皮林徒步（可选30min）</div>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar">
+            <div class="sb-section">
+                <div class="sb-title">🍜 今日美食</div>
+                <div class="food-card">
+                    <div class="food-name">兴隆咖啡 ⭐⭐</div>
+                    <div class="food-shop">📍 兴隆华侨农场咖啡厅</div>
+                    <div class="food-desc">归侨带来的咖啡，浓郁独特</div>
+                    <div class="food-price">💰 ~20-30元</div>
+                </div>
+                <div class="food-card">
+                    <div class="food-name">印尼菜</div>
+                    <div class="food-shop">📍 兴隆老街印尼餐厅</div>
+                    <div class="food-desc">咖喱、沙爹、椰浆饭</div>
+                    <div class="food-price">💰 人均50-60元</div>
+                </div>
+            </div>
+            <div class="sb-section">
+                <div class="sb-title">🌿 景点详情</div>
+                <div class="spot-card">
+                    <div class="spot-name">兴隆热带植物园</div>
+                    <div class="spot-info"><b>门票：</b>成人60元，儿童30元</div>
+                    <div class="spot-info"><b>时长：</b>1.5-2h</div>
+                    <div class="spot-play">✨ 不是普通公园，是活的植物课堂</div>
+                </div>
+                <div class="spot-card">
+                    <div class="spot-name">石梅湾</div>
+                    <div class="spot-info"><b>门票：</b>免费</div>
+                    <div class="spot-info"><b>亮点：</b>《非诚勿扰2》取景地</div>
+                    <div class="spot-play">✨ 中国唯一滨海青皮林，安静人少</div>
+                </div>
+            </div>
+            <div class="sb-section">
+                <div class="sb-title">🏨 住宿</div>
+                <div class="stay-card">
+                    <div class="stay-title">石梅湾</div>
+                    <div class="stay-info">威斯汀 / 艾美（直接面海）</div>
+                    <div class="stay-info">💰 800-1200元/晚</div>
+                </div>
+            </div>
+            <div class="sb-section">
+                <div class="sb-title">⚠️ 避坑</div>
+                <div class="warn-card">
+                    <ul class="warn-list">
+                        <li>❌ 全程走高速（错过最美公路）</li>
+                        <li>❌ 植物园走马观花（重点看咖啡可可）</li>
+                        <li>❌ 跳过兴隆咖啡（归侨精髓）</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Day 5 -->
+<div class="card day-5">
+    <div class="day-header">
+        <div style="display:flex;align-items:center;gap:12px;">
+            <div class="day-num">D5</div>
+            <div class="day-info"><h3>石梅湾 → 陵水清水湾</h3><span>猴岛+会唱歌的沙滩</span></div>
+        </div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            <span class="day-badge">🚗 50km</span>
+            <span class="day-badge">🏨 清水湾</span>
+        </div>
+    </div>
+    <div class="day-body">
+        <div class="timeline-area">
+            <div class="timeline">
+                <div class="tl-item">
+                    <div class="tl-dot drive"></div>
+                    <div class="tl-time">10:30</div>
+                    <div class="tl-title">🚗 出发（滨海旅游公路）<span class="tag tag-drive">最美路段</span></div>
+                    <div class="tl-desc">不要走高速！像加州1号公路</div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-dot"></div>
+                    <div class="tl-time">10:45-10:55</div>
+                    <div class="tl-title">🏄 日月湾观景台 <span class="tag tag-scenic">沿途</span></div>
+                    <div class="tl-desc">俯瞰冲浪圣地，看冲浪者</div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-dot"></div>
+                    <div class="tl-time">11:10-11:20</div>
+                    <div class="tl-title">🏝️ 分界洲岛观景点</div>
+                    <div class="tl-desc">远眺分界洲岛拍照（不用上岛）</div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-dot major"></div>
+                    <div class="tl-time">11:45-14:00</div>
+                    <div class="tl-title">🐒 南湾猴岛 <span class="tag tag-must">必去</span></div>
+                    <div class="tl-desc">跨海缆车（亮点！）→猴子表演→猴岛徒步→观察猴子社会</div>
+                    <div class="tl-tip"><strong>💡 带娃：</strong>找"猴王"，问"猴子为啥互相理毛"（社交行为）</div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-dot major"></div>
+                    <div class="tl-time">15:30-18:00</div>
+                    <div class="tl-title">🏖️ 清水湾"会唱歌的沙滩" <span class="tag tag-must">必去</span></div>
+                    <div class="tl-desc">沙子踩上去会响！快走听"咯吱咯吱"→做干湿沙对比实验</div>
+                    <div class="tl-tip"><strong>💡 原理：</strong>石英含量98%+沙粒干燥=摩擦发声</div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-dot food"></div>
+                    <div class="tl-time">18:30</div>
+                    <div class="tl-title">🦐 疍家渔排海鲜 <span class="tag tag-secret">人少秘境</span></div>
+                    <div class="tl-desc">新村港坐船去渔排，现捞现做</div>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar">
+            <div class="sb-section">
+                <div class="sb-title">🐒 景点详情</div>
+                <div class="spot-card">
+                    <div class="spot-name">南湾猴岛</div>
+                    <div class="spot-info"><b>门票+缆车：</b>成人163元，儿童83元</div>
+                    <div class="spot-info"><b>时长：</b>2-2.5h</div>
+                    <div class="spot-info"><b>缆车：</b>亚洲最长跨海缆车2138米</div>
+                    <div class="spot-play">✨ 世界唯一岛屿型猕猴保护区，2500只猴子</div>
+                </div>
+                <div class="spot-card">
+                    <div class="spot-name">清水湾</div>
+                    <div class="spot-info"><b>门票：</b>免费</div>
+                    <div class="spot-info"><b>最佳：</b>傍晚（沙子干燥声音响，不烫脚）</div>
+                    <div class="spot-play">✨ 世界三大会唱歌沙滩之一</div>
+                </div>
+            </div>
+            <div class="sb-section">
+                <div class="sb-title">🍜 今日美食</div>
+                <div class="food-card">
+                    <div class="food-name">疍家海鲜 ⭐</div>
+                    <div class="food-shop">📍 新村港渔排</div>
+                    <div class="food-desc">坐船去水上渔排，现捞现做</div>
+                    <div class="food-price">💰 人均100-150元</div>
+                </div>
+            </div>
+            <div class="sb-section">
+                <div class="sb-title">🏨 住宿</div>
+                <div class="stay-card">
+                    <div class="stay-title">清水湾</div>
+                    <div class="stay-info">莱佛士（顶级）/ 威斯汀</div>
+                    <div class="stay-info">💰 800-1500元/晚</div>
+                </div>
+            </div>
+            <div class="sb-section">
+                <div class="sb-title">⚠️ 避坑（猴岛安全）</div>
+                <div class="warn-card">
+                    <ul class="warn-list">
+                        <li>❌ 手拿食物晃（猴子会抢）</li>
+                        <li>❌ 亮物外露（手机眼镜收好）</li>
+                        <li>❌ 盯着猴子眼睛（视为挑衅）</li>
+                        <li>❌ 中午去沙滩（烫脚）</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Day 6 -->
+<div class="card day-6">
+    <div class="day-header">
+        <div style="display:flex;align-items:center;gap:12px;">
+            <div class="day-num">D6</div>
+            <div class="day-info"><h3>清水湾 → 海口（返程）</h3><span>吃完酸粉回家</span></div>
+        </div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;">
+            <span class="day-badge">🚗 200km</span>
+            <span class="day-badge">✈️ 返程</span>
+        </div>
+    </div>
+    <div class="day-body">
+        <div class="timeline-area">
+            <div class="timeline">
+                <div class="tl-item">
+                    <div class="tl-dot"></div>
+                    <div class="tl-time">09:00-10:30</div>
+                    <div class="tl-title">🏖️ 清水湾最后一玩</div>
+                    <div class="tl-desc">再听一次"会唱歌的沙子"</div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-dot food major"></div>
+                    <div class="tl-time">10:30-11:30</div>
+                    <div class="tl-title">🍜 陵水酸粉 <span class="tag tag-food">必吃</span></div>
+                    <div class="tl-desc">海南酸粉发源地！酸辣开胃</div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-dot drive"></div>
+                    <div class="tl-time">11:30-14:00</div>
+                    <div class="tl-title">🚗 返回海口（G98高速）</div>
+                    <div class="tl-desc">约2.5小时直达</div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-dot"></div>
+                    <div class="tl-time">14:00</div>
+                    <div class="tl-title">🚗 美兰机场还车</div>
+                    <div class="tl-desc">预留1小时还车检查</div>
+                </div>
+                <div class="tl-item">
+                    <div class="tl-dot"></div>
+                    <div class="tl-time">16:00+</div>
+                    <div class="tl-title">✈️ 飞回苏州 🎉</div>
+                    <div class="tl-desc">完美收官！</div>
+                </div>
+            </div>
+        </div>
+        <div class="sidebar">
+            <div class="sb-section">
+                <div class="sb-title">🍜 今日美食</div>
+                <div class="food-card">
+                    <div class="food-name">陵水酸粉 ⭐⭐</div>
+                    <div class="food-shop">📍 银河酸粉（陵水县城）</div>
+                    <div class="food-desc">海南酸粉发源地，酸辣开胃</div>
+                    <div class="food-price">💰 ~15-20元</div>
+                </div>
+            </div>
+            <div class="sb-section">
+                <div class="sb-title">📋 返程提醒</div>
+                <div class="spot-card">
+                    <div class="spot-info">• 预留1小时还车检查</div>
+                    <div class="spot-info">• 加满油再还（否则收费贵）</div>
+                    <div class="spot-info">• 检查有无违章（可能后续通知）</div>
+                    <div class="spot-info">• 拍照留证（车况）</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- 美食总览 -->
+<div class="card">
+    <div class="section-title">🍜 美食总攻略</div>
+    <div class="food-grid">
+        <div class="food-item">
+            <div class="food-item-name">🐔 文昌鸡 ⭐⭐⭐</div>
+            <div class="food-item-where">📍 文昌龙楼镇</div>
+            <div class="food-item-tip">四大名菜之首，白切最经典</div>
+        </div>
+        <div class="food-item">
+            <div class="food-item-name">🍜 海南粉</div>
+            <div class="food-item-where">📍 海口水巷口</div>
+            <div class="food-item-tip">腌粉，拌着吃，酸甜口</div>
+        </div>
+        <div class="food-item">
+            <div class="food-item-name">🍜 陵水酸粉 ⭐⭐</div>
+            <div class="food-item-where">📍 陵水县城</div>
+            <div class="food-item-tip">酸粉发源地，酸辣开胃</div>
+        </div>
+        <div class="food-item">
+            <div class="food-item-name">☕ 兴隆咖啡 ⭐⭐</div>
+            <div class="food-item-where">📍 兴隆镇</div>
+            <div class="food-item-tip">归侨文化，浓郁独特</div>
+        </div>
+        <div class="food-item">
+            <div class="food-item-name">🥥 清补凉 ⭐</div>
+            <div class="food-item-where">📍 海口老彭记</div>
+            <div class="food-item-tip">椰奶打底，娃超爱</div>
+        </div>
+        <div class="food-item">
+            <div class="food-item-name">🥥 椰子冻</div>
+            <div class="food-item-where">📍 东郊椰林</div>
+            <div class="food-item-tip">现做椰奶布丁</div>
+        </div>
+        <div class="food-item">
+            <div class="food-item-name">🦐 疍家海鲜 ⭐</div>
+            <div class="food-item-where">📍 新村港渔排</div>
+            <div class="food-item-tip">水上渔排，现捞现做</div>
+        </div>
+        <div class="food-item">
+            <div class="food-item-name">🍜 抱罗粉</div>
+            <div class="food-item-where">📍 文昌龙楼镇</div>
+            <div class="food-item-tip">汤粉，四大名粉之一</div>
+        </div>
+    </div>
+</div>
+
+<!-- 费用统计 -->
+<div class="card">
+    <div class="section-title">💰 费用明细（2大1小）</div>
+    <div class="stats">
+        <div class="stat"><div class="stat-icon">✈️</div><div class="stat-val">2.5-4K</div><div class="stat-label">机票</div></div>
+        <div class="stat"><div class="stat-icon">🚗</div><div class="stat-val">1.2-1.8K</div><div class="stat-label">租车6天</div></div>
+        <div class="stat"><div class="stat-icon">⛽</div><div class="stat-val">300-400</div><div class="stat-label">油费</div></div>
+        <div class="stat"><div class="stat-icon">🏨</div><div class="stat-val">2.5-5K</div><div class="stat-label">住宿5晚</div></div>
+        <div class="stat"><div class="stat-icon">🎫</div><div class="stat-val">~910</div><div class="stat-label">门票</div></div>
+        <div class="stat"><div class="stat-icon">🍜</div><div class="stat-val">1.2-1.6K</div><div class="stat-label">餐饮</div></div>
+        <div class="stat total"><div class="stat-icon">💰</div><div class="stat-val">9-15K</div><div class="stat-label">总计</div></div>
+    </div>
+</div>
+
+<!-- 实用信息 -->
+<div class="card">
+    <div class="section-title">📋 实
+用信息</div>
+    <div class="info-grid">
+        <div class="info-box">
+            <div class="info-box-title">🚗 租车建议</div>
+            <ul>
+                <li>车型：SUV或MPV（空间大）</li>
+                <li>平台：神州租车、一嗨租车</li>
+                <li>取还：美兰机场最方便</li>
+                <li>保险：建议买全险</li>
+                <li>儿童座椅：租车时加租或自带</li>
+            </ul>
+        </div>
+        <div class="info-box">
+            <div class="info-box-title">🎒 必备物品</div>
+            <ul>
+                <li>防晒：防晒霜、帽子、墨镜</li>
+                <li>玩水：泳衣、沙滩鞋、玩沙工具</li>
+                <li>衣物：换洗衣服、薄外套（空调冷）</li>
+                <li>其他：驱蚊液、常备药、充电宝</li>
+            </ul>
+        </div>
+        <div class="info-box">
+            <div class="info-box-title">⏰ 最佳时间</div>
+            <ul>
+                <li>2-3月：22-28℃，少雨，人少 ⭐⭐⭐</li>
+                <li>4-5月：25-32℃，偶雨</li>
+                <li>6-9月：28-35℃，多雨</li>
+                <li>10-1月：旺季，人多价高</li>
+            </ul>
+        </div>
+        <div class="info-box">
+            <div class="info-box-title">📞 紧急电话</div>
+            <ul>
+                <li>报警：110</li>
+                <li>急救：120</li>
+                <li>交通事故：122</li>
+                <li>租车客服：提前存好</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+</div>
+
+<div class="footer">
+    🌴 海南岛亲子慢自驾 · 制作：赛博话痨精 · 2026年2月<br>
+    带着这张图出发吧！祝旅途愉快 🚗
+</div>
+
+</body>
+</html>
