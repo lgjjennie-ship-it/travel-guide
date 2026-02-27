@@ -141,6 +141,74 @@
 </div>
 
 <div class="container">
+
+<!-- 实时天气预报 -->
+<div class="card">
+    <div class="section-title">🌤️ 目的地天气 <span style="font-size:0.75rem;color:#888;font-weight:normal;margin-left:10px;">数据来源：中国天气网 | 更新于 2026-02-27</span></div>
+    <div style="padding:20px;">
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:15px;">
+            <!-- 海口 -->
+            <div style="background:linear-gradient(135deg,#667eea,#764ba2);color:white;border-radius:16px;padding:18px;text-align:center;">
+                <div style="font-size:1.3rem;margin-bottom:5px;">✈️ 海口</div>
+                <div style="font-size:2.2rem;font-weight:bold;">28°<span style="font-size:1rem;">/22°</span></div>
+                <div style="font-size:0.9rem;opacity:0.9;">🌧️ 小雨转多云</div>
+                <div style="font-size:0.75rem;margin-top:8px;opacity:0.8;">紫外线弱 | 穿T恤短袖</div>
+            </div>
+            <!-- 文昌 -->
+            <div style="background:linear-gradient(135deg,#4facfe,#00f2fe);color:white;border-radius:16px;padding:18px;text-align:center;">
+                <div style="font-size:1.3rem;margin-bottom:5px;">🌴 文昌</div>
+                <div style="font-size:2.2rem;font-weight:bold;">27°<span style="font-size:1rem;">/23°</span></div>
+                <div style="font-size:0.9rem;opacity:0.9;">🌧️ 小雨转多云</div>
+                <div style="font-size:0.75rem;margin-top:8px;opacity:0.8;">注意保暖 | 带薄外套</div>
+            </div>
+            <!-- 万宁(石梅湾) -->
+            <div style="background:linear-gradient(135deg,#43e97b,#38f9d7);color:white;border-radius:16px;padding:18px;text-align:center;">
+                <div style="font-size:1.3rem;margin-bottom:5px;">🌿 万宁/石梅湾</div>
+                <div style="font-size:2.2rem;font-weight:bold;">27°<span style="font-size:1rem;">/23°</span></div>
+                <div style="font-size:0.9rem;opacity:0.9;">🌧️ 小雨转多云</div>
+                <div style="font-size:0.75rem;margin-top:8px;opacity:0.8;">3-4级风 | 适合户外</div>
+            </div>
+            <!-- 陵水(清水湾) -->
+            <div style="background:linear-gradient(135deg,#fa709a,#fee140);color:white;border-radius:16px;padding:18px;text-align:center;">
+                <div style="font-size:1.3rem;margin-bottom:5px;">🏖️ 陵水/清水湾</div>
+                <div style="font-size:2.2rem;font-weight:bold;">27°<span style="font-size:1rem;">/22°</span></div>
+                <div style="font-size:0.9rem;opacity:0.9;">🌧️ 小雨</div>
+                <div style="font-size:0.75rem;margin-top:8px;opacity:0.8;">沙滩可能湿滑</div>
+            </div>
+            <!-- 三亚(参考) -->
+            <div style="background:linear-gradient(135deg,#a18cd1,#fbc2eb);color:white;border-radius:16px;padding:18px;text-align:center;">
+                <div style="font-size:1.3rem;margin-bottom:5px;">🌺 三亚(参考)</div>
+                <div style="font-size:2.2rem;font-weight:bold;">29°<span style="font-size:1rem;">/23°</span></div>
+                <div style="font-size:0.9rem;opacity:0.9;">🌧️ 小雨</div>
+                <div style="font-size:0.75rem;margin-top:8px;opacity:0.8;">较热 | 防晒必备</div>
+            </div>
+        </div>
+        <!-- 未来几天趋势 -->
+        <div style="margin-top:20px;background:#f8f9fa;border-radius:12px;padding:15px;">
+            <div style="font-weight:bold;color:#333;margin-bottom:10px;">📅 未来7天趋势</div>
+            <div style="display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px;">
+                <div style="text-align:center;flex:1;min-width:60px;"><div style="font-size:0.8rem;color:#666;">27日</div><div>🌧️</div><div style="font-size:0.85rem;">28°/22°</div></div>
+                <div style="text-align:center;flex:1;min-width:60px;"><div style="font-size:0.8rem;color:#666;">28日</div><div>🌧️</div><div style="font-size:0.85rem;">29°/23°</div></div>
+                <div style="text-align:center;flex:1;min-width:60px;"><div style="font-size:0.8rem;color:#666;">1日</div><div>🌤️</div><div style="font-size:0.85rem;">30°/23°</div></div>
+                <div style="text-align:center;flex:1;min-width:60px;"><div style="font-size:0.8rem;color:#666;">2日</div><div>☀️</div><div style="font-size:0.85rem;">30°/24°</div></div>
+                <div style="text-align:center;flex:1;min-width:60px;"><div style="font-size:0.8rem;color:#666;">3日</div><div>🌧️</div><div style="font-size:0.85rem;">27°/21°</div></div>
+                <div style="text-align:center;flex:1;min-width:60px;"><div style="font-size:0.8rem;color:#666;">4日</div><div>🌧️</div><div style="font-size:0.85rem;">26°/19°</div></div>
+                <div style="text-align:center;flex:1;min-width:60px;"><div style="font-size:0.8rem;color:#666;">5日</div><div>🌧️</div><div style="font-size:0.85rem;">24°/18°</div></div>
+            </div>
+        </div>
+        <!-- 出行建议 -->
+        <div style="margin-top:15px;background:linear-gradient(135deg,#fff3e0,#ffe0b2);border-radius:12px;padding:15px;border-left:4px solid #ff9800;">
+            <div style="font-weight:bold;color:#e65100;margin-bottom:8px;">⚠️ 近期出行建议</div>
+            <ul style="font-size:0.85rem;color:#555;padding-left:20px;margin:0;line-height:1.8;">
+                <li>2月底海南多阴雨天气，建议<strong>带雨具和薄外套</strong></li>
+                <li>3月初气温回升，天气转晴，是更理想的出行时间</li>
+                <li>海边风大，小朋友注意<strong>防风保暖</strong></li>
+                <li>雨后道路湿滑，自驾注意安全，保持车距</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
 <!-- 路线总览 -->
 <div class="card">
     <div class="section-title">🗺️ 路线总览</div>
