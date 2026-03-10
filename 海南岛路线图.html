@@ -37,6 +37,82 @@
             margin-bottom: 30px;
             font-size: 1.1rem;
         }
+
+        /* 航班信息卡片 */
+        .flight-card {
+            background: linear-gradient(135deg, #1a237e, #283593);
+            border-radius: 20px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+            color: white;
+        }
+
+        .flight-title {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .flight-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .flight-item {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 20px;
+        }
+
+        .flight-label {
+            font-size: 0.85rem;
+            opacity: 0.8;
+            margin-bottom: 8px;
+        }
+
+        .flight-detail {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 1.1rem;
+        }
+
+        .flight-time {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .flight-arrow {
+            font-size: 1.5rem;
+        }
+
+        .flight-date {
+            background: rgba(255,255,255,0.2);
+            padding: 3px 10px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            margin-top: 8px;
+            display: inline-block;
+        }
+
+        .traveler-info {
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.2);
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .traveler-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
         
         .route-overview {
             background: white;
@@ -55,7 +131,6 @@
             gap: 10px;
         }
         
-        /* 简化路线图 */
         .simple-route {
             display: flex;
             align-items: center;
@@ -102,7 +177,6 @@
             font-size: 1.2rem;
         }
         
-        /* 每日详情卡片 */
         .day-cards {
             display: grid;
             gap: 20px;
@@ -129,10 +203,17 @@
         .day-4 .day-header { background: linear-gradient(135deg, #fa709a, #fee140); }
         .day-5 .day-header { background: linear-gradient(135deg, #a18cd1, #fbc2eb); }
         .day-6 .day-header { background: linear-gradient(135deg, #667eea, #764ba2); }
+        .day-7 .day-header { background: linear-gradient(135deg, #f5af19, #f12711); }
+        .day-8 .day-header { background: linear-gradient(135deg, #1a237e, #283593); }
         
         .day-number {
             font-size: 1.5rem;
             font-weight: bold;
+        }
+
+        .day-date {
+            font-size: 0.9rem;
+            opacity: 0.9;
         }
         
         .day-route {
@@ -151,7 +232,6 @@
             padding: 25px;
         }
         
-        /* 时间线 */
         .timeline {
             position: relative;
             padding-left: 30px;
@@ -222,6 +302,7 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            flex-wrap: wrap;
         }
         
         .timeline-desc {
@@ -242,8 +323,8 @@
         .tag-food { background: #fce4ec; color: #c2185b; }
         .tag-stay { background: #e8f5e9; color: #388e3c; }
         .tag-drive { background: #fff3e0; color: #f57c00; }
+        .tag-flight { background: #e8eaf6; color: #3f51b5; }
         
-        /* 住宿信息 */
         .stay-info {
             background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
             padding: 15px 20px;
@@ -262,45 +343,6 @@
             color: #2e7d32;
         }
         
-        /* 图例 */
-        .legend {
-            background: white;
-            border-radius: 15px;
-            padding: 20px;
-            margin-top: 30px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-        
-        .legend-title {
-            font-size: 1.1rem;
-            color: #333;
-            margin-bottom: 15px;
-        }
-        
-        .legend-items {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        
-        .legend-item {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        
-        .legend-dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-        }
-        
-        .legend-dot.scenic { background: #667eea; }
-        .legend-dot.food { background: #f5576c; }
-        .legend-dot.stay { background: #4caf50; }
-        .legend-dot.drive { background: #ff9800; }
-        
-        /* 底部统计 */
         .stats {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -332,7 +374,6 @@
             font-size: 0.9rem;
         }
         
-        /* 响应式 */
         @media (max-width: 768px) {
             h1 { font-size: 1.5rem; }
             .simple-route { gap: 5px; }
@@ -340,33 +381,68 @@
             .route-arrow { font-size: 1.2rem; }
             .day-header { flex-direction: column; gap: 10px; text-align: center; }
             .route-info { gap: 15px; }
+            .flight-row { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>🚗 海南岛亲子自驾路线图</h1>
-        <p class="subtitle">6天5晚 · 450公里 · 慢节奏深度游</p>
+        <p class="subtitle">8天7晚 · 3/14-3/21 · 450公里 · 慢节奏深度游</p>
+
+        <!-- 航班信息 -->
+        <div class="flight-card">
+            <div class="flight-title">✈️ 航班信息</div>
+            <div class="flight-row">
+                <div class="flight-item">
+                    <div class="flight-label">去程</div>
+                    <div class="flight-detail">
+                        <span class="flight-time">09:00</span>
+                        <span>浦东</span>
+                        <span class="flight-arrow">✈️→</span>
+                        <span>美兰</span>
+                        <span class="flight-time">12:30</span>
+                    </div>
+                    <div class="flight-date">📅 3月14日 周六</div>
+                </div>
+                <div class="flight-item">
+                    <div class="flight-label">返程</div>
+                    <div class="flight-detail">
+                        <span class="flight-time">20:15</span>
+                        <span>美兰</span>
+                        <span class="flight-arrow">✈️→</span>
+                        <span>虹桥</span>
+                        <span class="flight-time">23:00</span>
+                    </div>
+                    <div class="flight-date">📅 3月21日 周六</div>
+                </div>
+            </div>
+            <div class="traveler-info">
+                <div class="traveler-item">👨‍👩‍👧 3位大人</div>
+                <div class="traveler-item">👧 1位6岁小女孩</div>
+                <div class="traveler-item">🧳 共4人出行</div>
+            </div>
+        </div>
         
         <!-- 路线总览 -->
         <div class="route-overview">
             <div class="overview-title">🗺️ 路线总览</div>
             <div class="simple-route">
-                <span class="route-city">✈️ 海口</span>
+                <span class="route-city">✈️ 海口(2晚)</span>
                 <span class="route-arrow">→</span>
-                <span class="route-city">🌴 文昌</span>
+                <span class="route-city">🌴 文昌(2晚)</span>
                 <span class="route-arrow">→</span>
-                <span class="route-city">🌿 石梅湾</span>
+                <span class="route-city">🌿 石梅湾(2晚)</span>
                 <span class="route-arrow">→</span>
-                <span class="route-city">🏖️ 清水湾</span>
+                <span class="route-city">🏖️ 清水湾(1晚)</span>
                 <span class="route-arrow">→</span>
                 <span class="route-city">✈️ 海口</span>
             </div>
             <div class="route-info">
-                <div class="info-item"><span class="info-icon">📅</span> 6天5晚</div>
+                <div class="info-item"><span class="info-icon">📅</span> 8天7晚</div>
                 <div class="info-item"><span class="info-icon">🚗</span> 约450公里</div>
-                <div class="info-item"><span class="info-icon">👨‍👩‍👧</span> 2大1小</div>
-                <div class="info-item"><span class="info-icon">💰</span> 9000-15000元</div>
+                <div class="info-item"><span class="info-icon">👨‍👩‍👧</span> 3大1小</div>
+                <div class="info-item"><span class="info-icon">💰</span> 12000-18000元</div>
             </div>
         </div>
         
@@ -378,6 +454,7 @@
                 <div class="day-header">
                     <div>
                         <div class="day-number">Day 1</div>
+                        <div class="day-date">3月14日 周六</div>
                         <div class="day-route">海口（落地日）</div>
                     </div>
                     <div class="day-distance">🚗 0km</div>
@@ -386,19 +463,37 @@
                     <div class="timeline">
                         <div class="timeline-item">
                             <div class="timeline-dot"></div>
-                            <div class="timeline-time">14:00</div>
-                            <div class="timeline-title">✈️ 抵达海口美兰机场 <span class="tag tag-drive">取车</span></div>
-                            <div class="timeline-desc">机场租车柜台取SUV</div>
+                            <div class="timeline-time">09:00</div>
+                            <div class="timeline-title">✈️ 上海浦东起飞 <span class="tag tag-flight">去程</span></div>
+                            <div class="timeline-desc">提前2小时到机场，4人注意行李额</div>
                         </div>
                         <div class="timeline-item">
                             <div class="timeline-dot"></div>
-                            <div class="timeline-time">15:30</div>
-                            <div class="timeline-title">🏨 入住酒店</div>
+                            <div class="timeline-time">12:30</div>
+                            <div class="timeline-title">✈️ 抵达海口美兰机场</div>
+                            <div class="timeline-desc">取托运行李</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-time">13:00</div>
+                            <div class="timeline-title">🚗 机场取车 <span class="tag tag-drive">取车</span></div>
+                            <div class="timeline-desc">提前App预约中型SUV（4人+行李）</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot food"></div>
+                            <div class="timeline-time">13:30</div>
+                            <div class="timeline-title">🍜 机场附近午餐</div>
+                            <div class="timeline-desc">海南粉/椰子鸡快餐</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-time">14:30</div>
+                            <div class="timeline-title">🏨 入住酒店休整</div>
                             <div class="timeline-desc">推荐住国贸或海甸岛</div>
                         </div>
                         <div class="timeline-item">
                             <div class="timeline-dot major"></div>
-                            <div class="timeline-time">16:45 - 18:30</div>
+                            <div class="timeline-time">16:15 - 18:30</div>
                             <div class="timeline-title">🏛️ 骑楼老街 <span class="tag tag-scenic">必去</span></div>
                             <div class="timeline-desc">南洋风情老街，边吃边逛<br>路线：水巷口→中山路→博爱北路→得胜沙路</div>
                         </div>
@@ -427,6 +522,63 @@
                 <div class="day-header">
                     <div>
                         <div class="day-number">Day 2</div>
+                        <div class="day-date">3月15日 周日</div>
+                        <div class="day-route">海口深度游</div>
+                    </div>
+                    <div class="day-distance">🚗 30km</div>
+                </div>
+                <div class="day-content">
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-time">09:00</div>
+                            <div class="timeline-title">🍜 酒店早餐或海大小吃街</div>
+                            <div class="timeline-desc">海南大学附近小吃街，本地学生最爱</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot major"></div>
+                            <div class="timeline-time">10:00 - 12:00</div>
+                            <div class="timeline-title">🌋 火山口地质公园 <span class="tag tag-scenic">必去</span></div>
+                            <div class="timeline-desc">万年火山口，登顶俯瞰海口<br>小朋友可以学习地质知识</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot food major"></div>
+                            <div class="timeline-time">12:30</div>
+                            <div class="timeline-title">🍲 火山口附近午餐 <span class="tag tag-food">特色</span></div>
+                            <div class="timeline-desc">石山黑豆腐、火山羊肉</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-time">14:00 - 15:30</div>
+                            <div class="timeline-title">😴 回酒店午休</div>
+                            <div class="timeline-desc">海南太热，中午休息很重要</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-time">16:00 - 18:00</div>
+                            <div class="timeline-title">🏖️ 西海岸带状公园</div>
+                            <div class="timeline-desc">海边骑车、放风筝、玩沙</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot food"></div>
+                            <div class="timeline-time">19:00</div>
+                            <div class="timeline-title">🦞 海鲜晚餐</div>
+                            <div class="timeline-desc">丁村万人海鲜广场（自己买海鲜，付加工费）</div>
+                        </div>
+                    </div>
+                    <div class="stay-info">
+                        <span class="stay-icon">🏨</span>
+                        <div class="stay-text"><strong>住：海口</strong>（同上）</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Day 3 -->
+            <div class="day-card day-3">
+                <div class="day-header">
+                    <div>
+                        <div class="day-number">Day 3</div>
+                        <div class="day-date">3月16日 周一</div>
                         <div class="day-route">海口 → 文昌</div>
                     </div>
                     <div class="day-distance">🚗 80km</div>
@@ -447,15 +599,9 @@
                         </div>
                         <div class="timeline-item">
                             <div class="timeline-dot"></div>
-                            <div class="timeline-time">11:00 - 11:15</div>
-                            <div class="timeline-title">🏛️ 铺前老街 <span class="tag tag-scenic">沿途</span></div>
-                            <div class="timeline-desc">比海口老街更原生态，游客几乎没有</div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-time">11:15 - 11:30</div>
-                            <div class="timeline-title">🌉 铺前跨海大桥</div>
-                            <div class="timeline-desc">车上看风景（不停车）</div>
+                            <div class="timeline-time">11:00 - 11:30</div>
+                            <div class="timeline-title">🏛️ 铺前老街 + 跨海大桥</div>
+                            <div class="timeline-desc">比海口老街更原生态</div>
                         </div>
                         <div class="timeline-item">
                             <div class="timeline-dot food major"></div>
@@ -467,7 +613,7 @@
                             <div class="timeline-dot major"></div>
                             <div class="timeline-time">15:30 - 17:30</div>
                             <div class="timeline-title">🌴 东郊椰林 <span class="tag tag-scenic">必去</span></div>
-                            <div class="timeline-desc">租电瓶车穿行 → 看老板爬树摘椰子 → 喝椰子水 → 吃椰子冻</div>
+                            <div class="timeline-desc">租电瓶车穿行 → 看老板爬树摘椰子 → 喝椰子水</div>
                         </div>
                         <div class="timeline-item">
                             <div class="timeline-dot major"></div>
@@ -483,11 +629,12 @@
                 </div>
             </div>
             
-            <!-- Day 3 -->
-            <div class="day-card day-3">
+            <!-- Day 4 -->
+            <div class="day-card day-4">
                 <div class="day-header">
                     <div>
-                        <div class="day-number">Day 3</div>
+                        <div class="day-number">Day 4</div>
+                        <div class="day-date">3月17日 周二</div>
                         <div class="day-route">文昌深度游</div>
                     </div>
                     <div class="day-distance">🚗 20km</div>
@@ -497,92 +644,43 @@
                         <div class="timeline-item">
                             <div class="timeline-dot"></div>
                             <div class="timeline-time">07:00（可选）</div>
-                            <div class="timeline-title">🌅 月亮湾看日出</div>
-                            <div class="timeline-desc">日出约06:45，看完回酒店睡回笼觉</div>
+                            <div class="timeline-title">🌅 月亮湾日出</div>
+                            <div class="timeline-desc">酒店门口就能看</div>
                         </div>
                         <div class="timeline-item">
                             <div class="timeline-dot major"></div>
-                            <div class="timeline-time">10:00 - 12:00</div>
+                            <div class="timeline-time">09:30 - 11:30</div>
                             <div class="timeline-title">🚀 航天科普中心 <span class="tag tag-scenic">必去</span></div>
-                            <div class="timeline-desc">看火箭模型 → 按发射按钮 → 穿航天服拍照 → 远眺发射塔</div>
+                            <div class="timeline-desc">看火箭模型、航天服、模拟发射<br>小朋友最爱！</div>
                         </div>
                         <div class="timeline-item">
                             <div class="timeline-dot food"></div>
-                            <div class="timeline-time">12:30</div>
-                            <div class="timeline-title">🍜 抱罗粉午餐 <span class="tag tag-food">当地特色</span></div>
-                            <div class="timeline-desc">龙楼镇街边粉店</div>
+                            <div class="timeline-time">12:00</div>
+                            <div class="timeline-title">🍜 龙楼镇午餐</div>
+                            <div class="timeline-desc">糟粕醋、抱罗粉</div>
                         </div>
                         <div class="timeline-item">
                             <div class="timeline-dot"></div>
-                            <div class="timeline-time">14:00 - 16:00</div>
-                            <div class="timeline-title">😴 午休躺平</div>
-                            <div class="timeline-desc">不赶路！酒店休息</div>
+                            <div class="timeline-time">14:00 - 15:30</div>
+                            <div class="timeline-title">😴 酒店午休</div>
+                            <div class="timeline-desc">躺平时间</div>
                         </div>
                         <div class="timeline-item">
                             <div class="timeline-dot major"></div>
                             <div class="timeline-time">16:00 - 18:00</div>
                             <div class="timeline-title">🪨 石头公园 <span class="tag tag-scenic">必去</span></div>
-                            <div class="timeline-desc">礁石探险 → 给石头起名字 → 看海浪拍石 → 日落拍照</div>
+                            <div class="timeline-desc">火山岩海岸，各种奇形怪状的石头<br>小朋友可以探险、捉小螃蟹</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-time">18:30</div>
+                            <div class="timeline-title">🌅 石头公园看日落</div>
+                            <div class="timeline-desc">拍照绝佳地点</div>
                         </div>
                     </div>
                     <div class="stay-info">
                         <span class="stay-icon">🏨</span>
-                        <div class="stay-text"><strong>住：文昌月亮湾</strong>（同Day 2）</div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Day 4 -->
-            <div class="day-card day-4">
-                <div class="day-header">
-                    <div>
-                        <div class="day-number">Day 4</div>
-                        <div class="day-route">文昌 → 万宁石梅湾</div>
-                    </div>
-                    <div class="day-distance">🚗 120km</div>
-                </div>
-                <div class="day-content">
-                    <div class="timeline">
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-time">09:30</div>
-                            <div class="timeline-title">🚗 出发（高速+滨海路）</div>
-                            <div class="timeline-desc">先走G98高速，后转滨海旅游公路</div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-time">10:15 - 10:45</div>
-                            <div class="timeline-title">🐟 潭门渔港 <span class="tag tag-scenic">沿途</span></div>
-                            <div class="timeline-desc">渔港风情，吃海鲜便宜新鲜</div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-time">10:45 - 11:30</div>
-                            <div class="timeline-title">🛣️ 滨海旅游公路 <span class="tag tag-drive">最美公路</span></div>
-                            <div class="timeline-desc">一侧大海一侧椰林，随时停车拍照</div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-dot major"></div>
-                            <div class="timeline-time">11:30 - 13:00</div>
-                            <div class="timeline-title">🌿 兴隆热带植物园 <span class="tag tag-scenic">必去</span></div>
-                            <div class="timeline-desc">认识咖啡树 → 可可树 → 香草兰 → 胡椒</div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-dot food major"></div>
-                            <div class="timeline-time">13:00 - 14:00</div>
-                            <div class="timeline-title">☕ 兴隆咖啡+印尼菜 <span class="tag tag-food">必吃</span></div>
-                            <div class="timeline-desc">归侨文化精髓！咖喱、沙爹、椰浆饭</div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-time">15:00 - 18:00</div>
-                            <div class="timeline-title">🏖️ 石梅湾躺平</div>
-                            <div class="timeline-desc">酒店泳池 → 沙滩发呆 → 青皮林徒步（可选）</div>
-                        </div>
-                    </div>
-                    <div class="stay-info">
-                        <span class="stay-icon">🏨</span>
-                        <div class="stay-text"><strong>住：石梅湾</strong>（威斯汀/艾美）</div>
+                        <div class="stay-text"><strong>住：文昌月亮湾</strong>（同上）</div>
                     </div>
                 </div>
             </div>
@@ -592,95 +690,168 @@
                 <div class="day-header">
                     <div>
                         <div class="day-number">Day 5</div>
-                        <div class="day-route">石梅湾 → 陵水清水湾</div>
+                        <div class="day-date">3月18日 周三</div>
+                        <div class="day-route">文昌 → 石梅湾</div>
                     </div>
-                    <div class="day-distance">🚗 50km</div>
+                    <div class="day-distance">🚗 120km</div>
                 </div>
                 <div class="day-content">
                     <div class="timeline">
                         <div class="timeline-item">
                             <div class="timeline-dot"></div>
-                            <div class="timeline-time">10:30</div>
-                            <div class="timeline-title">🚗 出发（滨海旅游公路）<span class="tag tag-drive">最美路段</span></div>
-                            <div class="timeline-desc">这一段不要走高速！像加州1号公路</div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-time">10:45 - 10:55</div>
-                            <div class="timeline-title">🏄 日月湾观景台 <span class="tag tag-scenic">沿途</span></div>
-                            <div class="timeline-desc">俯瞰冲浪圣地，看冲浪者</div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-time">11:10 - 11:20</div>
-                            <div class="timeline-title">🏝️ 分界洲岛观景点 <span class="tag tag-scenic">沿途</span></div>
-                            <div class="timeline-desc">远眺分界洲岛拍照（不用上岛）</div>
+                            <div class="timeline-time">09:00</div>
+                            <div class="timeline-title">🚗 出发前往万宁</div>
+                            <div class="timeline-desc">走高速约1.5小时</div>
                         </div>
                         <div class="timeline-item">
                             <div class="timeline-dot major"></div>
-                            <div class="timeline-time">11:45 - 14:00</div>
-                            <div class="timeline-title">🐒 南湾猴岛 <span class="tag tag-scenic">必去</span></div>
-                            <div class="timeline-desc">跨海缆车（亮点！）→ 猴子表演 → 猴岛徒步 → 观察猴子社会</div>
+                            <div class="timeline-time">10:30 - 11:30</div>
+                            <div class="timeline-title">🐟 潭门渔港 <span class="tag tag-scenic">沿途</span></div>
+                            <div class="timeline-desc">看渔船、买海鲜干货</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot food major"></div>
+                            <div class="timeline-time">12:00</div>
+                            <div class="timeline-title">🦀 潭门海鲜午餐 <span class="tag tag-food">必吃</span></div>
+                            <div class="timeline-desc">港口现捞现做</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-time">14:00</div>
+                            <div class="timeline-title">🏨 入住石梅湾酒店</div>
+                            <div class="timeline-desc">艾美/威斯汀</div>
                         </div>
                         <div class="timeline-item">
                             <div class="timeline-dot major"></div>
-                            <div class="timeline-time">15:30 - 18:00</div>
-                            <div class="timeline-title">🏖️ 清水湾"会唱歌的沙滩" <span class="tag tag-scenic">必去</span></div>
-                            <div class="timeline-desc">沙子踩上去会响！快走听"咯吱咯吱" → 做干湿沙对比实验</div>
-                        </div>
-                        <div class="timeline-item">
-                            <div class="timeline-dot food"></div>
-                            <div class="timeline-time">18:30</div>
-                            <div class="timeline-title">🦐 疍家渔排海鲜 <span class="tag tag-food">人少秘境</span></div>
-                            <div class="timeline-desc">新村港坐船去渔排，现捞现做</div>
+                            <div class="timeline-time">15:30 - 17:30</div>
+                            <div class="timeline-title">🌿 兴隆热带植物园 <span class="tag tag-scenic">必去</span></div>
+                            <div class="timeline-desc">热带植物大课堂，品尝水果</div>
                         </div>
                     </div>
                     <div class="stay-info">
                         <span class="stay-icon">🏨</span>
-                        <div class="stay-text"><strong>住：清水湾</strong>（莱佛士/威斯汀）</div>
+                        <div class="stay-text"><strong>住：石梅湾</strong>（艾美/威斯汀）</div>
                     </div>
                 </div>
             </div>
             
             <!-- Day 6 -->
             <div class="day-card day-6">
-                <div class="day-header">                    <div>
+                <div class="day-header">
+                    <div>
                         <div class="day-number">Day 6</div>
-                        <div class="day-route">清水湾 → 海口（返程）</div>
+                        <div class="day-date">3月19日 周四</div>
+                        <div class="day-route">石梅湾躺平日</div>
                     </div>
-                    <div class="day-distance">🚗 200km</div>
+                    <div class="day-distance">🚗 10km</div>
                 </div>
                 <div class="day-content">
                     <div class="timeline">
                         <div class="timeline-item">
                             <div class="timeline-dot"></div>
-                            <div class="timeline-time">09:00 - 10:30</div>
-                            <div class="timeline-title">🏖️ 清水湾最后一玩</div>
-                            <div class="timeline-desc">再听一次"会唱歌的沙子"</div>
+                            <div class="timeline-time">自然醒</div>
+                            <div class="timeline-title">☀️ 睡到自然醒</div>
+                            <div class="timeline-desc">度假就是要躺</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-time">10:00</div>
+                            <div class="timeline-title">🏊 酒店泳池/沙滩</div>
+                            <div class="timeline-desc">带小朋友玩水</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot major"></div>
+                            <div class="timeline-time">14:00 - 16:00</div>
+                            <div class="timeline-title">🏄 日月湾冲浪体验 <span class="tag tag-scenic">可选</span></div>
+                            <div class="timeline-desc">中国冲浪圣地！有儿童教学</div>
+                        </div>
+                    </div>
+                    <div class="stay-info">
+                        <span class="stay-icon">🏨</span>
+                        <div class="stay-text"><strong>住：石梅湾</strong>（同上）</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Day 7 -->
+            <div class="day-card day-7">
+                <div class="day-header">
+                    <div>
+                        <div class="day-number">Day 7</div>
+                        <div class="day-date">3月20日 周五</div>
+                        <div class="day-route">石梅湾 → 清水湾</div>
+                    </div>
+                    <div class="day-distance">🚗 50km</div>
+                </div>
+                <div class="day-content">
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-dot major"></div>
+                            <div class="timeline-time">10:30 - 13:00</div>
+                            <div class="timeline-title">🐒 南湾猴岛 <span class="tag tag-scenic">必去</span></div>
+                            <div class="timeline-desc">跨海缆车！岛上2000多只猕猴</div>
                         </div>
                         <div class="timeline-item">
                             <div class="timeline-dot food major"></div>
-                            <div class="timeline-time">10:30 - 11:30</div>
+                            <div class="timeline-time">13:30</div>
                             <div class="timeline-title">🍜 陵水酸粉 <span class="tag tag-food">必吃</span></div>
-                            <div class="timeline-desc">海南酸粉发源地！酸辣开胃</div>
+                            <div class="timeline-desc">海南四大名粉之一</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot major"></div>
+                            <div class="timeline-time">16:30 - 18:00</div>
+                            <div class="timeline-title">🏖️ 会唱歌的沙滩 <span class="tag tag-scenic">必去</span></div>
+                            <div class="timeline-desc">脚踩沙子会"唱歌"！</div>
+                        </div>
+                    </div>
+                    <div class="stay-info">
+                        <span class="stay-icon">🏨</span>
+                        <div class="stay-text"><strong>住：清水湾</strong>（莱佛士/雅居乐）</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Day 8 -->
+            <div class="day-card day-8">
+                <div class="day-header">
+                    <div>
+                        <div class="day-number">Day 8</div>
+                        <div class="day-date">3月21日 周六</div>
+                        <div class="day-route">清水湾 → 海口 → 上海</div>
+                    </div>
+                    <div class="day-distance">🚗 200km + ✈️</div>
+                </div>
+                <div class="day-content">
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-dot food"></div>
+                            <div class="timeline-time">11:00</div>
+                            <div class="timeline-title">🍜 再来一碗陵水酸粉</div>
+                            <div class="timeline-desc">临走前再吃一次</div>
                         </div>
                         <div class="timeline-item">
                             <div class="timeline-dot"></div>
-                            <div class="timeline-time">11:30 - 14:00</div>
-                            <div class="timeline-title">🚗 返回海口（G98高速）</div>
-                            <div class="timeline-desc">约2.5小时直达</div>
+                            <div class="timeline-time">12:00</div>
+                            <div class="timeline-title">🚗 出发返回海口 <span class="tag tag-drive">3小时</span></div>
+                            <div class="timeline-desc">走G98高速</div>
                         </div>
                         <div class="timeline-item">
                             <div class="timeline-dot"></div>
-                            <div class="timeline-time">14:00</div>
-                            <div class="timeline-title">🚗 美兰机场还车</div>
-                            <div class="timeline-desc">预留1小时还车检查</div>
+                            <div class="timeline-time">15:30</div>
+                            <div class="timeline-title">🚗 海口还车</div>
+                            <div class="timeline-desc">机场或市区还车点</div>
                         </div>
                         <div class="timeline-item">
-                            <div class="timeline-dot"></div>
-                            <div class="timeline-time">16:00+</div>
-                            <div class="timeline-title">✈️ 飞回苏州</div>
-                            <div class="timeline-desc">完美收官！🎉</div>
+                            <div class="timeline-dot major"></div>
+                            <div class="timeline-time">18:00</div>
+                            <div class="timeline-title">✈️ 到达美兰机场 <span class="tag tag-flight">返程</span></div>
+                            <div class="timeline-desc">提前2小时值机</div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-dot major"></div>
+                            <div class="timeline-time">20:15 → 23:00</div>
+                            <div class="timeline-title">✈️ 海口→上海虹桥</div>
+                            <div class="timeline-desc">回家！旅途圆满结束 🎉</div>
                         </div>
                     </div>
                 </div>
@@ -688,42 +859,11 @@
             
         </div>
         
-        <!-- 图例 -->
-        <div class="legend">
-            <div class="legend-title">📌 图例说明</div>
-            <div class="legend-items">
-                <div class="legend-item">
-                    <div class="legend-dot scenic"></div>
-                    <span>景点/停靠</span>
-                </div>
-                <div class="legend-item">
-                    <div class="legend-dot food"></div>
-                    <span>美食打卡</span>
-                </div>
-                <div class="legend-item">
-                    <div class="legend-dot stay"></div>
-                    <span>住宿</span>
-                </div>
-                <div class="legend-item">
-                    <div class="legend-dot drive"></div>
-                    <span>自驾/风景路</span>
-                </div>
-                <div class="legend-item">
-                    <span class="tag tag-scenic">必去</span>
-                    <span>核心景点</span>
-                </div>
-                <div class="legend-item">
-                    <span class="tag tag-food">必吃</span>
-                    <span>招牌美食</span>
-                </div>
-            </div>
-        </div>
-        
         <!-- 统计 -->
         <div class="stats">
             <div class="stat-card">
                 <div class="stat-icon">📅</div>
-                <div class="stat-value">6天5晚</div>
+                <div class="stat-value">8天7晚</div>
                 <div class="stat-label">行程天数</div>
             </div>
             <div class="stat-card">
@@ -732,25 +872,17 @@
                 <div class="stat-label">自驾里程</div>
             </div>
             <div class="stat-card">
-                <div class="stat-icon">🏝️</div>
-                <div class="stat-value">12+</div>
-                <div class="stat-label">景点/停靠</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-icon">🍜</div>
-                <div class="stat-value">8+</div>
-                <div class="stat-label">美食打卡</div>
+                <div class="stat-icon">👨‍👩‍👧</div>
+                <div class="stat-value">4人</div>
+                <div class="stat-label">3大1小</div>
             </div>
             <div class="stat-card">
                 <div class="stat-icon">💰</div>
-                <div class="stat-value">9-15K</div>
-                <div class="stat-label">预算(2大1小)</div>
+                <div class="stat-value">1.2-1.8万</div>
+                <div class="stat-label">预算范围</div>
             </div>
         </div>
         
-        <p style="text-align: center; color: rgba(255,255,255,0.8); margin-top: 30px; font-size: 0.9rem;">
-            🌴 海南岛亲子慢自驾 · 制作：赛博话痨精 · 2026年2月
-        </p>
     </div>
 </body>
 </html>
