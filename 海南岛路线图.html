@@ -374,6 +374,93 @@
             font-size: 0.9rem;
         }
         
+        /* 景点详情样式 */
+        .spot-detail {
+            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
+            border-radius: 12px;
+            padding: 15px;
+            margin-top: 12px;
+            border-left: 4px solid #1976d2;
+        }
+        .spot-detail-title {
+            font-weight: bold;
+            color: #1565c0;
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+        }
+        .spot-detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+        .spot-detail-item {
+            font-size: 0.85rem;
+            color: #444;
+        }
+        .spot-detail-item strong {
+            color: #1565c0;
+        }
+        .spot-intro {
+            font-size: 0.85rem;
+            color: #333;
+            background: white;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 10px;
+            line-height: 1.7;
+        }
+        .why-go {
+            background: #e8f5e9;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        .why-go-title {
+            font-weight: bold;
+            color: #2e7d32;
+            margin-bottom: 8px;
+        }
+        .why-go ul {
+            padding-left: 20px;
+            margin: 0;
+            font-size: 0.85rem;
+            color: #444;
+        }
+        .why-go li {
+            margin-bottom: 4px;
+        }
+        .kid-tips {
+            background: #fff3e0;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 10px;
+            border-left: 4px solid #ff9800;
+        }
+        .kid-tips-title {
+            font-weight: bold;
+            color: #e65100;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+        .kid-tips ul {
+            padding-left: 20px;
+            margin: 0;
+            font-size: 0.85rem;
+            color: #555;
+        }
+        .kid-tips li {
+            margin-bottom: 4px;
+        }
+        .spot-tips {
+            background: #fce4ec;
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: #c2185b;
+            margin-top: 10px;
+        }
+
         @media (max-width: 768px) {
             h1 { font-size: 1.5rem; }
             .simple-route { gap: 5px; }
@@ -382,6 +469,7 @@
             .day-header { flex-direction: column; gap: 10px; text-align: center; }
             .route-info { gap: 15px; }
             .flight-row { grid-template-columns: 1fr; }
+            .spot-detail-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -496,6 +584,37 @@
                             <div class="timeline-time">16:15 - 18:30</div>
                             <div class="timeline-title">🏛️ 骑楼老街 <span class="tag tag-scenic">必去</span></div>
                             <div class="timeline-desc">南洋风情老街，边吃边逛<br>路线：水巷口→中山路→博爱北路→得胜沙路</div>
+                            <div class="spot-detail">
+                                <div class="spot-detail-title">📍 景点详情</div>
+                                <div class="spot-detail-grid">
+                                    <div class="spot-detail-item"><strong>门票：</strong>免费开放</div>
+                                    <div class="spot-detail-item"><strong>建议时长：</strong>2-3小时</div>
+                                    <div class="spot-detail-item"><strong>最佳时间：</strong>下午4点-晚上8点</div>
+                                    <div class="spot-detail-item"><strong>地址：</strong>海口市龙华区骑楼老街</div>
+                                </div>
+                                <div class="spot-intro">
+                                    <p><strong>🏛️ 这是什么地方？</strong></p>
+                                    <p>骑楼老街是海口最具南洋风情的历史街区，保存了约600多栋骑楼建筑，是上世纪初归国华侨借鉴南洋风格所建。漫步其中，仿佛穿越回民国时期的繁华商埠。</p>
+                                </div>
+                                <div class="why-go">
+                                    <div class="why-go-title">🌟 为什么值得去？</div>
+                                    <ul>
+                                        <li><strong>免费开放</strong>：不花门票钱就能看百年建筑</li>
+                                        <li><strong>美食聚集地</strong>：海南粉、清补凉、老盐柠檬水都在这</li>
+                                        <li><strong>拍照圣地</strong>：南洋骑楼超出片</li>
+                                        <li><strong>活着的历史</strong>：不是人造景点，是真实生活的老城区</li>
+                                    </ul>
+                                </div>
+                                <div class="kid-tips">
+                                    <div class="kid-tips-title">👶 带娃注意事项</div>
+                                    <ul>
+                                        <li>老街车辆较多，牵好孩子的手</li>
+                                        <li>部分路面不平，注意推车通行</li>
+                                        <li>清补凉可以让孩子自己选配料，增加参与感</li>
+                                    </ul>
+                                </div>
+                                <div class="spot-tips">⚠️ 避雷：老街没有专门停车场，建议打车或停远一点步行过来</div>
+                            </div>
                         </div>
                         <div class="timeline-item">
                             <div class="timeline-dot food major"></div>
@@ -508,6 +627,29 @@
                             <div class="timeline-time">18:50 - 19:30</div>
                             <div class="timeline-title">🌅 假日海滩看日落</div>
                             <div class="timeline-desc">海口最方便的公共海滩</div>
+                            <div class="spot-detail">
+                                <div class="spot-detail-title">📍 景点详情</div>
+                                <div class="spot-detail-grid">
+                                    <div class="spot-detail-item"><strong>门票：</strong>免费（停车费10元）</div>
+                                    <div class="spot-detail-item"><strong>建议时长：</strong>1-1.5小时</div>
+                                    <div class="spot-detail-item"><strong>最佳时间：</strong>日落前1小时</div>
+                                </div>
+                                <div class="why-go">
+                                    <div class="why-go-title">🌟 为什么值得去？</div>
+                                    <ul>
+                                        <li><strong>海口最方便的海滩</strong>：市区就能看海</li>
+                                        <li><strong>日落超美</strong>：朝西的海滩，落日直接沉入海里</li>
+                                        <li><strong>设施完善</strong>：有淋浴、更衣室、小卖部</li>
+                                    </ul>
+                                </div>
+                                <div class="kid-tips">
+                                    <div class="kid-tips-title">👶 带娃注意事项</div>
+                                    <ul>
+                                        <li>带一套换洗衣服，孩子肯定会玩水弄湿</li>
+                                        <li>不要让孩子走太远，注意潮汐变化</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="stay-info">
@@ -540,6 +682,32 @@
                             <div class="timeline-time">10:00 - 12:00</div>
                             <div class="timeline-title">🌋 火山口地质公园 <span class="tag tag-scenic">必去</span></div>
                             <div class="timeline-desc">万年火山口，登顶俯瞰海口<br>小朋友可以学习地质知识</div>
+                            <div class="spot-detail">
+                                <div class="spot-detail-title">📍 景点详情</div>
+                                <div class="spot-detail-grid">
+                                    <div class="spot-detail-item"><strong>门票：</strong>成人60元，儿童30元</div>
+                                    <div class="spot-detail-item"><strong>开放时间：</strong>08:00-18:00</div>
+                                    <div class="spot-detail-item"><strong>建议时长：</strong>2小时</div>
+                                    <div class="spot-detail-item"><strong>地址：</strong>海口市秀英区石山镇</div>
+                                </div>
+                                <div class="why-go">
+                                    <div class="why-go-title">🌟 为什么值得去？</div>
+                                    <ul>
+                                        <li><strong>天然地质课堂</strong>：万年火山口，让孩子了解地球科学</li>
+                                        <li><strong>俯瞰海口全景</strong>：登顶可看琼州海峡</li>
+                                        <li><strong>负氧离子爆表</strong>：火山岩地区植被茂密，天然氧吧</li>
+                                        <li><strong>火山特色美食</strong>：周边的石山黑豆腐、火山羊必吃</li>
+                                    </ul>
+                                </div>
+                                <div class="kid-tips">
+                                    <div class="kid-tips-title">👶 带娃注意事项</div>
+                                    <ul>
+                                        <li>台阶较多，小朋友体力不好可以只走半程</li>
+                                        <li>带够水，山上补给点少</li>
+                                        <li>可以买个火山石小纪念品给孩子</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                         <div class="timeline-item">
                             <div class="timeline-dot food major"></div>
@@ -558,6 +726,21 @@
                             <div class="timeline-time">16:00 - 18:00</div>
                             <div class="timeline-title">🏖️ 西海岸带状公园</div>
                             <div class="timeline-desc">海边骑车、放风筝、玩沙</div>
+                            <div class="spot-detail">
+                                <div class="spot-detail-title">📍 景点详情</div>
+                                <div class="spot-detail-grid">
+                                    <div class="spot-detail-item"><strong>门票：</strong>免费</div>
+                                    <div class="spot-detail-item"><strong>建议时长：</strong>2小时</div>
+                                </div>
+                                <div class="why-go">
+                                    <div class="why-go-title">🌟 为什么值得去？</div>
+                                    <ul>
+                                        <li><strong>超长海岸线</strong>：适合骑车、散步、放风筝</li>
+                                        <li><strong>本地人休闲地</strong>：不是游客景点，氛围轻松</li>
+                                        <li><strong>日落很美</strong>：朝西，看夕阳沉入海面</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                         <div class="timeline-item">
                             <div class="timeline-dot food"></div>
@@ -596,30 +779,125 @@
                             <div class="timeline-time">10:15 - 10:45</div>
                             <div class="timeline-title">🌿 东寨港红树林 <span class="tag tag-scenic">沿途</span></div>
                             <div class="timeline-desc">坐船穿行红树林，看招潮蟹</div>
+                            <div class="spot-detail">
+                                <div class="spot-detail-title">📍 景点详情</div>
+                                <div class="spot-detail-grid">
+                                    <div class="spot-detail-item"><strong>门票：</strong>免费（游船另付约50元）</div>
+                                    <div class="spot-detail-item"><strong>建议时长：</strong>30-45分钟</div>
+                                </div>
+                                <div class="why-go">
+                                    <div class="why-go-title">🌟 为什么值得去？</div>
+                                    <ul>
+                                        <li><strong>中国最大红树林</strong>：湿地生态系统活教材</li>
+                                        <li><strong>看招潮蟹</strong>：成群的小螃蟹，孩子超喜欢</li>
+                                        <li><strong>顺路沿途</strong>：去文昌正好经过</li>
+                                    </ul>
+                                </div>
+                                <div class="kid-tips">
+                                    <div class="kid-tips-title">👶 带娃注意事项</div>
+                                    <ul>
+                                        <li>游船时抓好孩子，不要探身出去</li>
+                                        <li>涂好防蚊液，湿地蚊虫较多</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                         <div class="timeline-item">
                             <div class="timeline-dot"></div>
                             <div class="timeline-time">11:00 - 11:30</div>
                             <div class="timeline-title">🏛️ 铺前老街 + 跨海大桥</div>
                             <div class="timeline-desc">比海口老街更原生态</div>
+                            <div class="spot-detail">
+                                <div class="spot-detail-title">📍 景点详情</div>
+                                <div class="spot-detail-grid">
+                                    <div class="spot-detail-item"><strong>门票：</strong>免费</div>
+                                    <div class="spot-detail-item"><strong>建议时长：</strong>20-30分钟</div>
+                                </div>
+                                <div class="why-go">
+                                    <div class="why-go-title">🌟 为什么值得去？</div>
+                                    <ul>
+                                        <li><strong>没有商业化</strong>：比海口老街更原生态</li>
+                                        <li><strong>铺前跨海大桥</strong>：海南最长跨海大桥，车上看风景震撼</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                         <div class="timeline-item">
                             <div class="timeline-dot food major"></div>
                             <div class="timeline-time">12:00 - 13:00</div>
                             <div class="timeline-title">🍗 文昌鸡午餐 <span class="tag tag-food">必吃</span></div>
                             <div class="timeline-desc">南门鸡饭店（龙楼镇），原产地最正宗！</div>
+                            <div class="spot-detail">
+                                <div class="why-go">
+                                    <div class="why-go-title">🍗 为什么必吃？</div>
+                                    <ul>
+                                        <li><strong>海南四大名菜之首</strong>：来海南必吃文昌鸡</li>
+                                        <li><strong>原产地最正宗</strong>：在文昌吃和在海口吃完全不一样</li>
+                                        <li><strong>白切最经典</strong>：皮脆肉滑，蘸酱吃</li>
+                                    </ul>
+                                </div>
+                                <div class="spot-tips">⚠️ 推荐店：南门鸡饭店、龙楼金牛鸡饭店</div>
+                            </div>
                         </div>
                         <div class="timeline-item">
                             <div class="timeline-dot major"></div>
                             <div class="timeline-time">15:30 - 17:30</div>
                             <div class="timeline-title">🌴 东郊椰林 <span class="tag tag-scenic">必去</span></div>
                             <div class="timeline-desc">租电瓶车穿行 → 看老板爬树摘椰子 → 喝椰子水</div>
+                            <div class="spot-detail">
+                                <div class="spot-detail-title">📍 景点详情</div>
+                                <div class="spot-detail-grid">
+                                    <div class="spot-detail-item"><strong>门票：</strong>免费开放</div>
+                                    <div class="spot-detail-item"><strong>电瓶车：</strong>约50元/小时</div>
+                                    <div class="spot-detail-item"><strong>建议时长：</strong>2小时</div>
+                                </div>
+                                <div class="why-go">
+                                    <div class="why-go-title">🌟 为什么值得去？</div>
+                                    <ul>
+                                        <li><strong>海南最美椰林</strong>：50万株椰子树，椰风海韵</li>
+                                        <li><strong>骑车穿行超爽</strong>：租个电瓶车，带娃慢慢逛</li>
+                                        <li><strong>现摘椰子</strong>：看老板爬树摘椰子，现砍现喝</li>
+                                        <li><strong>椰子冻必吃</strong>：用椰子壳做的冻，孩子最爱</li>
+                                    </ul>
+                                </div>
+                                <div class="kid-tips">
+                                    <div class="kid-tips-title">👶 带娃注意事项</div>
+                                    <ul>
+                                        <li>骑电瓶车注意安全，带孩子要慢行</li>
+                                        <li>椰子林里有蚊子，喷好防蚊液</li>
+                                        <li>让孩子参与选椰子，增加互动感</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                         <div class="timeline-item">
                             <div class="timeline-dot major"></div>
                             <div class="timeline-time">18:00 - 19:00</div>
                             <div class="timeline-title">🌙 月亮湾 <span class="tag tag-scenic">人少秘境</span></div>
                             <div class="timeline-desc">整片沙滩可能只有你们！看日落玩沙</div>
+                            <div class="spot-detail">
+                                <div class="spot-detail-title">📍 景点详情</div>
+                                <div class="spot-detail-grid">
+                                    <div class="spot-detail-item"><strong>门票：</strong>免费</div>
+                                    <div class="spot-detail-item"><strong>建议时长：</strong>1-2小时</div>
+                                </div>
+                                <div class="why-go">
+                                    <div class="why-go-title">🌟 为什么值得去？</div>
+                                    <ul>
+                                        <li><strong>人少秘境</strong>：整片沙滩可能只有你们一家</li>
+                                        <li><strong>沙滩质量高</strong>：沙子细腻，水清澈</li>
+                                        <li><strong>日落超美</strong>：朝西的海湾，落日直接沉入海里</li>
+                                        <li><strong>免费+无商业</strong>：没有小贩打扰，纯净自然</li>
+                                    </ul>
+                                </div>
+                                <div class="kid-tips">
+                                    <div class="kid-tips-title">👶 带娃注意事项</div>
+                                    <ul>
+                                        <li>海浪较大，不建议孩子下水游泳</li>
+                                        <li>玩沙、捡贝壳、看日落最合适</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="stay-info">
@@ -652,6 +930,30 @@
                             <div class="timeline-time">09:30 - 11:30</div>
                             <div class="timeline-title">🚀 航天科普中心 <span class="tag tag-scenic">必去</span></div>
                             <div class="timeline-desc">看火箭模型、航天服、模拟发射<br>小朋友最爱！</div>
+                            <div class="spot-detail">
+                                <div class="spot-detail-title">📍 景点详情</div>
+                                <div class="spot-detail-grid">
+                                    <div class="spot-detail-item"><strong>门票：</strong>成人120元，儿童60元</div>
+                                    <div class="spot-detail-item"><strong>开放时间：</strong>09:00-17:30</div>
+                                    <div class="spot-detail-item"><strong>建议时长：</strong>2小时</div>
+                                </div>
+                                <div class="why-go">
+                                    <div class="why-go-title">🌟 为什么值得去？</div>
+                                    <ul>
+                                        <li><strong>真实火箭</strong>：1:1火箭模型，能进内部参观</li>
+                                        <li><strong>航天服体验</strong>：孩子可以穿宇航服拍照</li>
+                                        <li><strong>模拟发射</strong>：4D影院体验火箭发射</li>
+                                        <li><strong>文昌发射场</strong>：运气好能赶上真的发射</li>
+                                    </ul>
+                                </div>
+                                <div class="kid-tips">
+                                    <div class="kid-tips-title">👶 带娃注意事项</div>
+                                    <ul>
+                                        <li>6岁孩子正是对太空感兴趣的年龄</li>
+                                        <li>4D影院有轻微晃动，胆小的孩子可以跳过</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                         <div class="timeline-item">
                             <div class="timeline-dot food"></div>
@@ -670,6 +972,29 @@
                             <div class="timeline-time">16:00 - 18:00</div>
                             <div class="timeline-title">🪨 石头公园 <span class="tag tag-scenic">必去</span></div>
                             <div class="timeline-desc">火山岩海岸，各种奇形怪状的石头<br>小朋友可以探险、捉小螃蟹</div>
+                            <div class="spot-detail">
+                                <div class="spot-detail-title">📍 景点详情</div>
+                                <div class="spot-detail-grid">
+                                    <div class="spot-detail-item"><strong>门票：</strong>免费</div>
+                                    <div class="spot-detail-item"><strong>建议时长：</strong>1.5-2小时</div>
+                                </div>
+                                <div class="why-go">
+                                    <div class="why-go-title">🌟 为什么值得去？</div>
+                                    <ul>
+                                        <li><strong>免费地质奇观</strong>：火山岩被海浪侵蚀成各种形状</li>
+                                        <li><strong>孩子探险乐园</strong>：爬石头、钻洞、捉螃蟹</li>
+                                        <li><strong>日落绝佳地点</strong>：黑色礁石+橙色夕阳，出片</li>
+                                    </ul>
+                                </div>
+                                <div class="kid-tips">
+                                    <div class="kid-tips-title">👶 带娃注意事项</div>
+                                    <ul>
+                                        <li>注意潮汐时间，涨潮时立即撤离</li>
+                                        <li>石头湿滑，穿防滑鞋</li>
+                                    </ul>
+                                </div>
+                                <div class="spot-tips">⚠️ 避雷：查好潮汐时间！涨潮时有危险</div>
+                            </div>
                         </div>
                         <div class="timeline-item">
                             <div class="timeline-dot"></div>
@@ -708,12 +1033,37 @@
                             <div class="timeline-time">10:30 - 11:30</div>
                             <div class="timeline-title">🐟 潭门渔港 <span class="tag tag-scenic">沿途</span></div>
                             <div class="timeline-desc">看渔船、买海鲜干货</div>
+                            <div class="spot-detail">
+                                <div class="spot-detail-title">📍 景点详情</div>
+                                <div class="spot-detail-grid">
+                                    <div class="spot-detail-item"><strong>门票：</strong>免费</div>
+                                    <div class="spot-detail-item"><strong>建议时长：</strong>1小时</div>
+                                </div>
+                                <div class="why-go">
+                                    <div class="why-go-title">🌟 为什么值得去？</div>
+                                    <ul>
+                                        <li><strong>真实渔港</strong>：看渔民生活，了解南海捕鱼文化</li>
+                                        <li><strong>海鲜超便宜</strong>：港口现买现做，比景区便宜一半</li>
+                                        <li><strong>买干货</strong>：鱼干、虾米带回家</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                         <div class="timeline-item">
                             <div class="timeline-dot food major"></div>
                             <div class="timeline-time">12:00</div>
                             <div class="timeline-title">🦀 潭门海鲜午餐 <span class="tag tag-food">必吃</span></div>
                             <div class="timeline-desc">港口现捞现做</div>
+                            <div class="spot-detail">
+                                <div class="why-go">
+                                    <div class="why-go-title">🦀 为什么必吃？</div>
+                                    <ul>
+                                        <li><strong>性价比超高</strong>：渔港直供，价格是三亚的一半</li>
+                                        <li><strong>新鲜到极致</strong>：刚上岸的海鲜，现做现吃</li>
+                                    </ul>
+                                </div>
+                                <div class="spot-tips">⚠️ 避雷：先问价再捞，注意袋子里的水，加工费提前谈好</div>
+                            </div>
                         </div>
                         <div class="timeline-item">
                             <div class="timeline-dot"></div>
@@ -726,6 +1076,31 @@
                             <div class="timeline-time">15:30 - 17:30</div>
                             <div class="timeline-title">🌿 兴隆热带植物园 <span class="tag tag-scenic">必去</span></div>
                             <div class="timeline-desc">热带植物大课堂，品尝水果</div>
+                            <div class="spot-detail">
+                                <div class="spot-detail-title">📍 景点详情</div>
+                                <div class="spot-detail-grid">
+                                    <div class="spot-detail-item"><strong>门票：</strong>成人60元，儿童30元</div>
+                                    <div class="spot-detail-item"><strong>开放时间：</strong>07:30-18:00</div>
+                                    <div class="spot-detail-item"><strong>建议时长：</strong>2小时</div>
+                                </div>
+                                <div class="why-go">
+                                    <div class="why-go-title">🌟 为什么值得去？</div>
+                                    <ul>
+                                        <li><strong>热带植物百科</strong>：咖啡、可可、胡椒…认识各种热带作物</li>
+                                        <li><strong>免费品尝</strong>：咖啡、可可、热带水果随便尝</li>
+                                        <li><strong>华侨文化</strong>：了解东南亚归侨的历史故事</li>
+                                        <li><strong>天然氧吧</strong>：园区绿化好，适合带娃散步</li>
+                                    </ul>
+                                </div>
+                                <div class="kid-tips">
+                                    <div class="kid-tips-title">👶 带娃注意事项</div>
+                                    <ul>
+                                        <li>可以让孩子认植物、做笔记，当自然课</li>
+                                        <li>园区有电瓶车，走累了可以坐</li>
+                                        <li>买点兴隆咖啡带回家</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="stay-info">
@@ -764,6 +1139,28 @@
                             <div class="timeline-time">14:00 - 16:00</div>
                             <div class="timeline-title">🏄 日月湾冲浪体验 <span class="tag tag-scenic">可选</span></div>
                             <div class="timeline-desc">中国冲浪圣地！有儿童教学</div>
+                            <div class="spot-detail">
+                                <div class="spot-detail-title">📍 景点详情</div>
+                                <div class="spot-detail-grid">
+                                    <div class="spot-detail-item"><strong>冲浪教学：</strong>约200-300元/人</div>
+                                    <div class="spot-detail-item"><strong>建议时长：</strong>2小时</div>
+                                </div>
+                                <div class="why-go">
+                                    <div class="why-go-title">🌟 为什么值得去？</div>
+                                    <ul>
+                                        <li><strong>中国冲浪圣地</strong>：全年有浪，亚洲顶级冲浪地</li>
+                                        <li><strong>亲子冲浪</strong>：有专门的儿童教学，6岁可以体验</li>
+                                        <li><strong>看别人冲也很爽</strong>：不冲浪也可以在岸边看高手表演</li>
+                                    </ul>
+                                </div>
+                                <div class="kid-tips">
+                                    <div class="kid-tips-title">👶 带娃注意事项</div>
+                                    <ul>
+                                        <li>选择正规冲浪俱乐部，有儿童教练</li>
+                                        <li>涂好防晒霜，海边紫外线强</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="stay-info">
@@ -790,6 +1187,30 @@
                             <div class="timeline-time">10:30 - 13:00</div>
                             <div class="timeline-title">🐒 南湾猴岛 <span class="tag tag-scenic">必去</span></div>
                             <div class="timeline-desc">跨海缆车！岛上2000多只猕猴</div>
+                            <div class="spot-detail">
+                                <div class="spot-detail-title">📍 景点详情</div>
+                                <div class="spot-detail-grid">
+                                    <div class="spot-detail-item"><strong>门票+缆车：</strong>成人163元，儿童85元</div>
+                                    <div class="spot-detail-item"><strong>开放时间：</strong>08:00-17:30</div>
+                                    <div class="spot-detail-item"><strong>建议时长：</strong>2.5-3小时</div>
+                                </div>
+                                <div class="why-go">
+                                    <div class="why-go-title">🌟 为什么值得去？</div>
+                                    <ul>
+                                        <li><strong>跨海缆车</strong>：2公里跨海，脚下是大海，超震撼</li>
+                                        <li><strong>2000只猕猴</strong>：可以近距离接触</li>
+                                        <li><strong>猴子表演</strong>：孩子超喜欢</li>
+                                    </ul>
+                                </div>
+                                <div class="kid-tips">
+                                    <div class="kid-tips-title">👶 带娃注意事项</div>
+                                    <ul>
+                                        <li>⚠️ 不要拿出食物，猴子会抢！</li>
+                                        <li>手机、眼镜收好</li>
+                                    </ul>
+                                </div>
+                                <div class="spot-tips">⚠️ 避雷：千万别带吃的进去！</div>
+                            </div>
                         </div>
                         <div class="timeline-item">
                             <div class="timeline-dot food major"></div>
@@ -802,6 +1223,28 @@
                             <div class="timeline-time">16:30 - 18:00</div>
                             <div class="timeline-title">🏖️ 会唱歌的沙滩 <span class="tag tag-scenic">必去</span></div>
                             <div class="timeline-desc">脚踩沙子会"唱歌"！</div>
+                            <div class="spot-detail">
+                                <div class="spot-detail-title">📍 景点详情</div>
+                                <div class="spot-detail-grid">
+                                    <div class="spot-detail-item"><strong>门票：</strong>免费（酒店私属沙滩）</div>
+                                    <div class="spot-detail-item"><strong>建议时长：</strong>2小时</div>
+                                </div>
+                                <div class="why-go">
+                                    <div class="why-go-title">🌟 为什么值得去？</div>
+                                    <ul>
+                                        <li><strong>全国仅3处</strong>：踩沙子会发出"唱歌"声，孩子超惊喜</li>
+                                        <li><strong>沙子极细</strong>：含石英成分高，摩擦发声</li>
+                                        <li><strong>水清沙白</strong>：媲美马尔代夫的水质</li>
+                                    </ul>
+                                </div>
+                                <div class="kid-tips">
+                                    <div class="kid-tips-title">👶 带娃注意事项</div>
+                                    <ul>
+                                        <li>让孩子用力踩沙子听"歌声"</li>
+                                        <li>干沙比湿沙响，选对位置</li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="stay-info">
